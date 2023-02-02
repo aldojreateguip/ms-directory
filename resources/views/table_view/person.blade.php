@@ -71,7 +71,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="addPersonLabel">Ingrese datos de nueva persona</h5>
             </div>
-            <form action="{{ url ('add-person') }}" method="POST" id="addPersonForm">
+            <form action="{{ url ('add-person') }}" method="POST" id="forms">
                 @csrf
                 <div class="modal-body">
                     <div class="row md-form mb-2">
@@ -229,7 +229,7 @@
 
 @section('scripts')
 <script>
-    $('#addPerson').on('hidden.bs.modal', function() {
+    $('#forms').on('hidden.bs.modal', function() {
         document.getElementById("addPersonForm").reset();
     })
 
