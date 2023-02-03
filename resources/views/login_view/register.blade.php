@@ -133,5 +133,5 @@
     </div>
 </div>
 @vite(['resources/js/forms.js'])
-<!-- <script src="resources/js/forms.js"></script> -->
+
 @endsection

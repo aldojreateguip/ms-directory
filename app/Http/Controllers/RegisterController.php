@@ -20,20 +20,20 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'surname' => 'required',
-        //     'email' => 'required',
-        //     'iddoc' => 'required',
-        //     'address' => 'required',
-        //     'phone' => 'required',
-        //     'web_page' => 'required',
-        //     'profile_picture' => 'required',
-        //     'birthday' => 'required',
-        //     'ubigeo' => 'required',
-        //     'password' => 'required',
-        // ]);
-        // $lastid = Person::latest('person_id')->first();
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required',
+            'iddoc' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'web_page' => 'required',
+            'profile_picture' => 'required',
+            'birthday' => 'required',
+            'ubigeo' => 'required',
+            'password' => 'required',
+        ]);
+        
         $persondata = new Person;
         $userdata = new User;
         $persondata->person_name = $request->input('name');
