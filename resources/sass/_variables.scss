@@ -15,47 +15,47 @@ body {
     margin: 0;
     overflow: hidden;
 }
-.navbar_ {
-    // height: var(--navbar-height);
-    // line-height: var(--navbar-height);
-    // width: 100vw;
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: space-between;
-    // position: relative;
-    // padding: 0 1rem 0 1rem;
-    background: #388e3c;
-    // z-index: 10;
-    // box-shadow: 0 0 10px #fff;
-}
-.navbar-brand, .navbar__title {
-    margin-left: 2rem;
-    transition: 0.1s ease-in-out !important;
-}
-.navbar{
-    top: 0;
-    left: 0;
-    z-index: 20;
-    box-shadow: 0 0 30px solid #000 !important;
-    padding: 0 !important;
-}
-.navbar > .container{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    transition: 0.1s ease-in-out !important;
-}
-.navbar__title a {
-    margin: 0px;
-    text-decoration: none;
-    color: #000;
-    font-size: 30px;
-    font-weight: bold;
-    transition: 0.1s ease all !important;
-}
-.navbar__title a:hover {
-    color: #fff;
-    transition: 0.3s ease all !important;
-}
+// .navbar_ {
+//     // height: var(--navbar-height);
+//     // line-height: var(--navbar-height);
+//     // width: 100vw;
+//     // display: flex;
+//     // flex-wrap: wrap;
+//     // justify-content: space-between;
+//     // position: relative;
+//     // padding: 0 1rem 0 1rem;
+//     background: #388e3c;
+//     // z-index: 10;
+//     // box-shadow: 0 0 10px #fff;
+// }
+// .navbar-brand, .navbar__title {
+//     margin-left: 2rem;
+//     transition: 0.1s ease-in-out !important;
+// }
+// .navbar{
+//     top: 0;
+//     left: 0;
+//     z-index: 50;
+//     box-shadow: 0 0 70px solid #000 !important;
+//     padding: 0 !important;
+// }
+// .navbar > .container{
+//     margin: 0 0 0 0;
+//     padding: 0 0 0 0;
+//     transition: 0.1s ease-in-out !important;
+// }
+// .navbar__title a {
+//     margin: 0px;
+//     text-decoration: none;
+//     color: #000;
+//     font-size: 30px;
+//     font-weight: bold;
+//     transition: 0.1s ease all !important;
+// }
+// .navbar__title a:hover {
+//     color: #fff;
+//     transition: 0.3s ease all !important;
+// }
 .navbar-toggler {
     z-index: 50;
     position: absolute !important;
@@ -63,36 +63,40 @@ body {
     right: 2rem;
     top: 0.5rem;
 }
-.navbar-toggler p {
+.navbar-toggler i {
     margin: 0;
     font-size: 30px;
     color: #fff;
 }
 .navbar-toggler:hover {
     box-shadow: 0 0 0 0;
-    background-color: #000;
+    background-color: #ffffff;
+}
+.navbar-toggler:hover i {
+    color: #000;
 }
 .navbar-toggler:focus {
     box-shadow: 0 0 0 0 !important;
 }
-.nav-link:hover {
-    color: #fff !important;
-}
-.navbar__items {
-    transition: 0.1s ease-in-out !important;
-}
-.navbar__items a {
-    margin: 0px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.596) !important;
-    font-size: 18px !important;
-    text-decoration: none !important;
-}
+// .nav-link:hover {
+//     color: #fff !important;
+// }
+// .navbar__items {
+//     transition: 0.1s ease-in-out !important;
+// }
+// .navbar__items a {
+//     margin: 0px;
+//     font-weight: 600;
+//     color: rgba(0, 0, 0, 0.596) !important;
+//     font-size: 18px !important;
+//     text-decoration: none !important;
+// }
 .Exclamation-icon {
     font-size: 24px;
     color: black;
 }
 .content__area {
+    margin-top: var(--navbar-height);
     display: flex;
     width: 100vw;
     height: calc(100vh - var(--navbar-height));
@@ -151,7 +155,7 @@ body {
     padding: 10px;
     // background: rgb(214, 249, 247);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
 }
 .forms__content {
@@ -306,3 +310,4 @@ body {
 .upcase{
     text-transform: uppercase;
 }
+

@@ -18,7 +18,8 @@ class User extends Authenticatable
     protected $guarded = [
         'user_id',
         'user_created_at'=>'created_at',
-        'user_updated_at'=>'updated_at'
+        'user_updated_at'=>'updated_at',
+        'user_type'
     ];
     protected $primaryKey = 'user_id';
     protected $fillable = [

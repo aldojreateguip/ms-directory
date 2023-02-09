@@ -2,6 +2,12 @@
 <html lang="en">
 
 <head>
+    <!-- LoginScreen Resources -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -15,13 +21,14 @@
     <!-- Scripts -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/login_styles.css', 'resources/css/header_styles.css'])
+
 
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar_">
+    <!-- <nav class="navbar navbar-expand-lg navbar_">
         <div class="container">
             <div class="navbar-brand navbar__title">
                 <a href="/">Directorio</a>
@@ -48,8 +55,8 @@
                 </ul>
             </div>
         </div>
-    </nav>
-
+    </nav> -->
+    @extends('header')
     <div class="content__area">
         <div class="sidebar" style="background-color: lightgray;">
 

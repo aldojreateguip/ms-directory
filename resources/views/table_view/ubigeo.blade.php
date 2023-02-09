@@ -1,4 +1,5 @@
 @extends('layout.layout')
+@section('title', 'Ubigeo')
 
 @section('content')
 <!-- Main -->

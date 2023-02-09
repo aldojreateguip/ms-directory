@@ -10,6 +10,8 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/js/app.js",
                 "resources/js/forms.js",
+                "resources/css/login_styles.css",
+                "resources/css/header_styles.css",
             ],
             refresh: [{
                 paths: ["public/assets/**"], 

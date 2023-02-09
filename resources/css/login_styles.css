@@ -1,0 +1,213 @@
+/* Made by Mutiullah Samim*/
+
+@import url("https://fonts.googleapis.com/css?family=Numans");
+
+nav,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+i {
+    font-family: Montserrat-Regular;
+}
+:root {
+    --margin-top: 3.5rem;
+}
+html,
+body {
+    background-image: linear-gradient(
+            rgba(255, 230, 3, 0.3),
+            rgba(0, 0, 0, 0.5)
+        ),
+        url("login_assets/login_background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: "Numans", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+.main-container {
+    padding: 0;
+    margin-top: var(--margin-top);
+    height: calc(100vh - var(--margin-top));
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.login-box {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
+    position: relative;
+    margin: 5% auto;
+    height: 400px;
+    width: 800px;
+    /* background: red; */
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    align-content: center;
+}
+
+.left-box {
+    /* background: red; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 400px;
+    height: 400px;
+}
+
+.left-box h1 {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 28px;
+    color: #fff;
+}
+
+.left-box label {
+    color: #fff;
+    font-size: 20px;
+}
+
+.forms-group {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: [first] 40px [line2] auto;
+    grid-auto-rows: minmax(50px, auto);
+}
+.input-box {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 80% auto;
+    height: 35px;
+    border: 1px solid #fff;
+    outline: none;
+    font-size: 18px;
+    transition: 0.2s ease all;
+    color: #fff;
+    background: transparent;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.input-icon-box {
+    position: relative;
+}
+
+.input-icon {
+    display: flex;
+    width: 40px;
+    align-items: center;
+    padding: 0.7rem 0.6rem;
+    font-size: 18px;
+    height: 35px;
+    color: #212529;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #1279ff;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: 0.2s ease all;
+}
+
+.forms-group-input {
+    position: relative;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.right-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 400px;
+    height: 400px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+.right-title {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.or {
+    position: absolute;
+    top: 47.5%;
+    left: 47.5%;
+    width: 40px;
+    height: 40px;
+    background: #efefef;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    .right-box {
+        /* display: none; */
+        top: 50%;
+        height: 400px;
+    }
+    .right-title {
+        margin-top: 15%;
+    }
+    .or {
+        top: 48%;
+    }
+    .login-box {
+        margin-top: 10%;
+        width: 400px;
+        height: 800px;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .right-box {
+        top: 50%;
+        height: 400px;
+    }
+    .right-title {
+        margin-top: 15%;
+    }
+    .or {
+        top: 48%;
+    }
+    .left-box,
+    .right-box {
+        width: 100%;
+    }
+    .login-box {
+        margin-top: 10%;
+        width: 100%;
+        height: 800px;
+        grid-template-columns: 1fr;
+    }
+}
