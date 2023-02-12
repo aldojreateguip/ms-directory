@@ -14,10 +14,7 @@ export default defineConfig({
                 "resources/css/header_styles.css",
                 "resources/css/main_background.css",
             ],
-            refresh: [{
-                paths: ["public/assets/**"], 
-                config: { delay: 300 } 
-            }],
+            refresh: true,
         }),
     ],
     resolve: {

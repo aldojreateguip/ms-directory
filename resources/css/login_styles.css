@@ -11,7 +11,7 @@
   ::-ms-input-placeholder { /* Microsoft Edge */
     color: rgba(255, 255, 255, 0.822);
   }
-@import url("https://fonts.googleapis.com/css?family=Numans");
+
 nav,
 body,
 div,
@@ -226,3 +226,4 @@ body {
         grid-template-columns: 1fr;
     }
 }
+

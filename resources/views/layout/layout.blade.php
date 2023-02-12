@@ -9,14 +9,14 @@
 
     <!--Fontawesome CDN-->
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="https://kit.fontawesome.com/21366aa9f0.css" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/21366aa9f0.css" crossorigin="anonymous"> -->
     <title>@yield('title')</title>
     @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/css/login_styles.css', 'resources/css/header_styles.css'])
 
 </head>
 <body>
     @extends('header')
-    <div class="main-container">
+    <div class="main-container" >
         @yield('content')
     </div>
 </body>
