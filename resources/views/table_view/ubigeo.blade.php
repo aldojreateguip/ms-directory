@@ -1,7 +1,7 @@
-@extends('layout.layout')
-@section('title', 'Ubigeo')
+@extends('admin_view.dashboard')
+@section('title','admin dashboard - ubigeo')
 
-@section('content')
+@section('content-area')
 <!-- Main -->
 
 <div class="card">
