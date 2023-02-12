@@ -9,34 +9,36 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Console\Input\Input;
 
 class LoginController extends Controller
 {
-    public function home()
+    public function admin()
     {
-
-        return view('home');
+        return view('admin_view.dashboard');
     }
 
-    public function index()
+    public function show()
     {
-        $datos = User::all();
-        return view('login_view.login', compact('datos'));
+        return view('login_view.login');
     }
 
-    public function login(Request $request)
+    public function authenticate(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
+
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        $user = DB::table('person')->join('user', 'user_id', '=', 'person.person_id')->select('person.person_email', 'user.user_password')->where('person.person_email', $request->input('email'))->first();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        if (!$user || !Hash::check($request->password, $user->user_password)) {
-            return redirect()->intended('login', 'status', 'error');
-        } else {
-            return view('home');
+            return redirect()->intended('admin');
         }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

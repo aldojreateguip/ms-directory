@@ -5,15 +5,8 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 :root {
-    --navbar-height: 50px;
+    --navbar-height: 60px;
     --sidebar-width: 15rem;
-}
-
-html,
-body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
 }
 // .navbar_ {
 //     // height: var(--navbar-height);

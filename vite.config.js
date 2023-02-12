@@ -12,6 +12,7 @@ export default defineConfig({
                 "resources/js/forms.js",
                 "resources/css/login_styles.css",
                 "resources/css/header_styles.css",
+                "resources/css/main_background.css",
             ],
             refresh: [{
                 paths: ["public/assets/**"], 

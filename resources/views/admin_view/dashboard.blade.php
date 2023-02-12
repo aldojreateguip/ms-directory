@@ -1,8 +1,15 @@
 @extends('layout.layout')
-@section('title', 'Dashboard')
-
+@guest
+@section('title', 'Restricted Zone')
 @section('content')
-<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-    {{ Auth::user()->name }}
-</a>
-@endsection
+<div class="container" style="background: red; width: 100vw; height: 100vh;">
+</div>
+@endguest
+
+@auth
+@section('title', 'Admin Dashboard')
+@section('content')
+<div class="container" style="background: green; width: 100vw; height: 100vh;">
+
+</div>
+@endauth
