@@ -2,50 +2,48 @@
 @section('content-area')
 <!-- Main -->
 
-<div class="table-card">
-    <div class="table-header">Lista de ubigeo</div>
-    <div class="table-function-btn-box">
-        <button class="btn btn-primary addbtn" id="add_ubigeo" name="add_ubigeo" data-bs-toggle="modal" data-bs-target="#addUbigeo">Agregar ubigeo</button>
+<div class="card">
+    <div class="card-header">
+        Lista de ubigeo
     </div>
-    <div class="table-alert-box">
-        @if(session('status'))
-        <p>
-            {{session('status')}}
-        </p>
-        @endif
-    </div>
-    <div class="table-data">
-        <div id="dataTable" class="custom-table">
-            <div class="table-head">
-                <div class="table-head-cell">{{__('actions')}}</div>
-                <div class="table-head-cell">{{__('country')}}</div>
-                <div class="table-head-cell">{{__('department')}}</div>
-                <div class="table-head-cell">{{__('municipality')}}</div>
+    <div class="card-body">
+        <div class="card-text">
+            <p>
+                <button class="btn btn-primary add btn-sm" id="add_Register_btn" name="add_Register_btn" data-bs-toggle="modal" data-bs-target="#add_Register">Nuevo Registro</button>
+            </p>
+            <br>
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>{{__('actions')}}</th>
+                        <th>{{__('country')}}</th=>
+                        <th>{{__('department')}}</th=>
+                        <th>{{__('municipality')}}</th=>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($ubigeo_data as $item)
+                    <tr>
+                        <td>
+                            <div class="btn-group-xs">
+                                <button data-bs-toggle="modal" data-bs-target="#editUbigeo" value="{{$item->ubigeo_id}}" class="action-btn btn-success editbtn">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <button data-bs-toggle="modal" data-bs-target="#deleteUbigeo" value="{{$item->ubigeo_id}}" class="action-btn btn-danger deletebtn">
+                                    <i class="bi bi-x-square"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td>{{ $item->ubigeo_country}}</td>
+                        <td>{{ $item->ubigeo_department}}</td>
+                        <td>{{ $item->ubigeo_municipality}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="d-flex">
+                {!! $ubigeo_data->links() !!}
             </div>
-            <div class="table-body">
-                @foreach($ubigeo_data as $item)
-                <div class="table-row">
-                    <div class="table-row-cell">
-                        <div class="btn-group-xs">
-                            <button data-bs-toggle="modal" data-bs-target="#editUbigeo" value="{{$item->ubigeo_id}}" class="action-btn btn-success editbtn">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                            <button data-bs-toggle="modal" data-bs-target="#deleteUbigeo" value="{{$item->ubigeo_id}}" class="action-btn btn-danger deletebtn">
-                                <i class="bi bi-x-square"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="table-row-cell">{{ $item->ubigeo_country}}</div>
-                    <div class="table-row-cell">{{ $item->ubigeo_department}}</div>
-                    <div class="table-row-cell">{{ $item->ubigeo_municipality}}</div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="table-footer">
-        <div class="d-flex">
-            {!! $ubigeo_data->links() !!}
         </div>
     </div>
 </div>

@@ -40,7 +40,7 @@
             </a>
             <a class="social-btn btn-facebook" href="#">
                 <i class="bi bi-facebook"></i>
-                <p>Google</p>
+                <p>Facebook</p>
             </a>
         </div>
     </div>
