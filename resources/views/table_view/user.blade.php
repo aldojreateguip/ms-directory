@@ -183,7 +183,7 @@
 </script>
 
 <!-- table hover scripts-->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     (function($) {
         "use strict";
         $('.pad').on('mouseover', function() {
@@ -201,5 +201,5 @@
             $(table1).find(".custom-row.head ." + column).removeClass('hov-column-head-custom');
         });
     })(jQuery);
-</script>
+</script> -->
 @endsection

@@ -1,57 +1,50 @@
-@extends('admin_view.dashboard')
-@section('content-area')
-<!-- Main -->
+@extends('template')
 
-<div class="table-card">
-    <div class="table-header">Lista de ubigeo</div>
-    <div class="table-function-btn-box">
-        <button class="btn btn-primary addbtn" id="add_ubigeo" name="add_ubigeo" data-bs-toggle="modal" data-bs-target="#addUbigeo">Agregar ubigeo</button>
-    </div>
-    <div class="table-alert-box">
-        @if(session('status'))
-        <p>
-            {{session('status')}}
-        </p>
-        @endif
-    </div>
-    <div class="table-data">
-        <div id="dataTable" class="custom-table">
-            <div class="table-head">
-                <div class="table-head-cell">{{__('actions')}}</div>
-                <div class="table-head-cell">{{__('country')}}</div>
-                <div class="table-head-cell">{{__('department')}}</div>
-                <div class="table-head-cell">{{__('municipality')}}</div>
-            </div>
-            <div class="table-body">
-                @foreach($ubigeo_data as $item)
-                <div class="table-row">
-                    <div class="table-row-cell">
-                        <div class="btn-group-xs">
-                            <button data-bs-toggle="modal" data-bs-target="#editUbigeo" value="{{$item->ubigeo_id}}" class="action-btn btn-success editbtn">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                            <button data-bs-toggle="modal" data-bs-target="#deleteUbigeo" value="{{$item->ubigeo_id}}" class="action-btn btn-danger deletebtn">
-                                <i class="bi bi-x-square"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="table-row-cell">{{ $item->ubigeo_country}}</div>
-                    <div class="table-row-cell">{{ $item->ubigeo_department}}</div>
-                    <div class="table-row-cell">{{ $item->ubigeo_municipality}}</div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="table-footer">
-        <div class="d-flex">
-            {!! $ubigeo_data->links() !!}
-        </div>
-    </div>
-</div>
+@section('table_title')
+<h1>Lista Ubigeo</h1>
+@endsection
 
-<!-- Add Ubigeo Modal -->
-<div class="modal fade" id="addUbigeo" data-keyboard="false" tabindex="-1" data-backdrop="static" aria-labelledby="addUbigeoLabel" aria-hidden="true">
+@section('head_data')
+<tr>
+    <th>
+        {{__('actions')}}
+    </th>
+    <th>
+        {{__('country')}}
+    </th>
+    <th>
+        {{__('department')}}
+    </th>
+    <th>
+        {{__('municipality')}}
+    </th>
+</tr>
+@endsection
+
+@section('row_data')
+@foreach($ubigeo_data as $item)
+<tr>
+    <td>
+        <button title="Actualizar" data-bs-toggle="modal" data-bs-target="#editRecord" value="{{$item->ubigeo_id}}" class="action-btn btn-success editbtn">
+            <i class="bi bi-pencil-square"></i>
+        </button>
+        <button title="Eliminar" data-bs-toggle="modal" data-bs-target="#deleteRecord" value="{{$item->ubigeo_id}}" class="action-btn btn-danger deletebtn">
+            <i class="bi bi-x-square"></i>
+        </button>
+    </td>
+    <td>{{ $item->ubigeo_country}}</td>
+    <td>{{ $item->ubigeo_department}}</td>
+    <td>{{ $item->ubigeo_municipality}}</td>
+</tr>
+@endforeach
+@endsection
+
+@section('pagination')
+{!! $ubigeo_data->links() !!}
+@endsection
+
+@section('modals')
+<div class="modal fade" id="addRecord" data-keyboard="false" tabindex="-1" data-backdrop="static" aria-labelledby="addRecordLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="forms__content">
             <div class="forms__header">
@@ -102,116 +95,74 @@
         </div>
     </div>
 </div>
-<!-- end Add Ubigeo Modal-->
 
-<!-- Edit Ubigeo Modal -->
-<div class="modal fade" id="editUbigeo" tabindex="-1" aria-labelledby="editUbigeoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="forms__content">
-            <div class="forms__header">
-                <h3 class="modal-title" id="editUbigeoLabel">Actualizar datos del registro</h3>
-            </div>
-            <form action="{{ url ('add-ubigeo') }}" class="forms" name="forms" id="edit_Form" method="POST">
-                @csrf
-                @method('PUT')
-                <input type="hidden" name="edit_id" id="edit_id" />
-                <!-- Group: Country -->
-                <div class="forms__group" id="group__country">
-                    <label for="add_country" class="forms__label">{{__('country')}}</label>
-                    <div class="forms__group-input">
-                        <input type="text" class="forms__input" name="edit_country" id="edit_country" placeholder="Perú">
-                        <i class="forms__validation-state bi bi-x-circle-fill"></i>
-                    </div>
-                    <p class="forms__input-error">Este campo solo puede contener letras</p>
-                </div>
-                <!-- Group: Department -->
-                <div class="forms__group" id="group__department">
-                    <label for="add_department" class="forms__label">{{__('department')}}</label>
-                    <div class="forms__group-input">
-                        <input type="text" class="forms__input" name="edit_department" id="edit_department" placeholder="Loreto">
-                        <i class="forms__validation-state bi bi-x-circle-fill"></i>
-                    </div>
-                    <p class="forms__input-error">Este campo solo puede contener letras</p>
-                </div>
-                <!-- Group: Municipality -->
-                <div class="forms__group" id="group__municipality">
-                    <label for="add_municipality" class="forms__label">{{__('municipality')}}</label>
-                    <div class="forms__group-input">
-                        <input type="text" class="forms__input" name="edit_municipality" id="edit_municipality" placeholder="Maynas">
-                        <i class="forms__validation-state bi bi-x-circle-fill"></i>
-                    </div>
-                    <p class="forms__input-error">Este campo solo puede contener letras</p>
-                </div>
-                <!-- Group: Error Message -->
-                <div class="forms__message" id="forms_message">
-                    <p><i class="exclamation-icon bi bi-exclamation-octagon-fill"></i>
-                        <b>Error:</b>
-                        Por favor complete correctamente los campos.
-                    </p>
-                </div>
-                <!-- Group: Buttons -->
-                <div class="forms__group forms__group-btn-submit">
-                    <button type="submit" class="forms__btn">{{__('update')}}</button>
-                    <p class="forms__message-success" id="forms__message-success">success</p>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- end Edit Ubigeo Modal -->
-
-<!-- Delete Ubigeo Modal -->
-<div class="modal fade" id="deleteUbigeo" tabindex="-1" aria-labelledby="deleteUbigeoLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+<div class="modal fade" id="editRecord" tabindex="-1" role="dialog" aria-labelledby="editRecordLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{ url ('delete-ubigeo') }}" method="POST" id="deleteUbigeoForm">
-                @csrf
-                @method('DELETE')
-
-                <input type="hidden" name="delete_id" id="delete_id">
-
-                <h5 class="message center" id="deleteUbigeoLabel">¿Desea eliminar el registro?</h5>
-                <div class="modal-footer btn-group center">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">{{__('close')}}</button>
-                    <button type="submit" class="btn btn-primary btn-sm" id="2">{{__('delete')}}</button>
-                </div>
-            </form>
+            <div class="modal-header">
+                <h3 class="modal-title" id="editRecordLabel">Actualizar datos del registro</h3>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url ('add-ubigeo') }}" class="forms" name="forms" id="aforms" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="record_id" id="record_id" />
+                    <!-- Group: Country -->
+                    <div class="forms__group" id="group__country">
+                        <label for="add_country" class="forms__label">{{__('country')}}</label>
+                        <div class="forms__group-input">
+                            <input type="text" class="forms__input" name="edit_country" id="edit_country" placeholder="Perú">
+                            <i class="forms__validation-state bi bi-x-circle-fill"></i>
+                        </div>
+                        <p class="forms__input-error">Este campo solo puede contener letras</p>
+                    </div>
+                    <!-- Group: Department -->
+                    <div class="forms__group" id="group__department">
+                        <label for="add_department" class="forms__label">{{__('department')}}</label>
+                        <div class="forms__group-input">
+                            <input type="text" class="forms__input" name="edit_department" id="edit_department" placeholder="Loreto">
+                            <i class="forms__validation-state bi bi-x-circle-fill"></i>
+                        </div>
+                        <p class="forms__input-error">Este campo solo puede contener letras</p>
+                    </div>
+                    <!-- Group: Municipality -->
+                    <div class="forms__group" id="group__municipality">
+                        <label for="add_municipality" class="forms__label">{{__('municipality')}}</label>
+                        <div class="forms__group-input">
+                            <input type="text" class="forms__input" name="edit_municipality" id="edit_municipality" placeholder="Maynas">
+                            <i class="forms__validation-state bi bi-x-circle-fill"></i>
+                        </div>
+                        <p class="forms__input-error">Este campo solo puede contener letras</p>
+                    </div>
+                    <!-- Group: Error Message -->
+                    <div class="forms__message" id="forms_message">
+                        <p><i class="exclamation-icon bi bi-exclamation-octagon-fill"></i>
+                            <b>Error:</b>
+                            Por favor complete correctamente los campos.
+                        </p>
+                    </div>
+                    <!-- Group: Buttons -->
+                    <div class="forms__group forms__group-btn-submit">
+                        <button type="submit" class="forms__btn">{{__('update')}}</button>
+                        <p class="forms__message-success" id="forms__message-success">success</p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<!-- end Delete Ubigeo Modal -->
 
 @endsection
 
 @section('scripts')
-<!-- alerts -->
 <script>
-    $('#addUbigeo').on('hidden.bs.modal', function() {
-        document.getElementById("forms").reset();
-    })
-
-    $('#editUbigeo').on('hidden.bs.modal', function() {
-        document.getElementById("edit_Form").reset();
-    })
-</script>
-
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.deletebtn', function() {
-            var ubigeo_id = $(this).val();
-            $('#delete_id').val(ubigeo_id);
-            console.log()
-        });
-    });
-
     $(document).ready(function() {
         $(document).on('click', '.editbtn', function() {
-            var ubigeo_id = $(this).val();
+            var record_id = $(this).val();
             $.ajax({
                 type: "GET",
-                url: "edit-ubigeo/" + ubigeo_id,
+                url: "edit-ubigeo/" + record_id,
                 success: function(response) {
-                    //console.log(response.ubigeo.ubigeo_country);
                     $('#edit_id').val(response.ubigeo.ubigeo_id);
                     $('#edit_country').val(response.ubigeo.ubigeo_country);
                     $('#edit_department').val(response.ubigeo.ubigeo_department);
@@ -222,25 +173,11 @@
     });
 </script>
 
-<!-- table hover scripts-->
-<!-- <script type="text/javascript">
-    (function($) {
-        "use strict";
-        $('.pad').on('mouseover', function() {
-            var table1 = $(this).parent().parent().parent();
-            var table2 = $(this).parent().parent();
-            var column = $(this).data('column') + "";
-            $(table2).find("." + column).addClass('hov-column-custom');
-            $(table1).find(".custom-row.head ." + column).addClass('hov-column-head-custom');
-        });
-        $('.pad').on('mouseout', function() {
-            var table1 = $(this).parent().parent().parent();
-            var table2 = $(this).parent().parent();
-            var column = $(this).data('column') + "";
-            $(table2).find("." + column).removeClass('hov-column-custom');
-            $(table1).find(".custom-row.head ." + column).removeClass('hov-column-head-custom');
-        });
-    })(jQuery);
-</script> -->
-@vite(['resources/js/forms.js'])
+<script>
+    Swal.fire(
+        'Techsolutionstuff!',
+        'You clicked the button!',
+        'success'
+    )
+</script>
 @endsection

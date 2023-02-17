@@ -12,7 +12,6 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/forms.js",
                 "resources/css/login_styles.css",
-                "resources/css/header_styles.css",
                 "resources/css/main_background.css",
             ],
             refresh: true,
@@ -23,8 +22,8 @@ export default defineConfig({
             "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
             "~bootstrap-icons": path.resolve(__dirname,"node_modules/bootstrap-icons"),
             "~admin-lte":path.resolve(__dirname, "node_modules/admin-lte"),
-            "~fa":path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/scss"),
             $: "jQuery",
+            "~fa":path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/scss"),
         },
     },
 });

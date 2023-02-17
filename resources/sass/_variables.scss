@@ -1,40 +1,23 @@
+nav,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+i,
+span {
+    font-family: Montserrat-Regular;
+    text-decoration: none !important;
+}
 // Body
 $body-bg: #f8fafc;
 // Typography
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-:root {
-    --ms-title-heiht: 100px;
-}
-
-.navbar-toggler {
-    z-index: 50;
-    position: absolute !important;
-    border: 0 !important;
-    right: 2rem;
-    top: 0.5rem;
-}
-.navbar-toggler i {
-    margin: 0;
-    font-size: 30px;
-    color: #fff;
-}
-.navbar-toggler:hover {
-    box-shadow: 0 0 0 0;
-    background-color: #ffffff;
-}
-.navbar-toggler:hover i {
-    color: #000;
-}
-.navbar-toggler:focus {
-    box-shadow: 0 0 0 0 !important;
-}
-
-.Exclamation-icon {
-    font-size: 24px;
-    color: black;
-}
 .content__area {
     margin-top: var(--navbar-height);
     display: flex;
@@ -271,7 +254,7 @@ $line-height-base: 1.6;
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 0px;
-    overflow-x: hidden;    
+    overflow-x: hidden;
     overflow-y: auto;
     background: transparent;
     transition: 0.2s ease all;
@@ -401,4 +384,24 @@ $line-height-base: 1.6;
         width: 250px;
         margin-right: 0;
     }
+}
+
+.mx-background-top-linear {
+    background: -webkit-linear-gradient(
+        45deg,
+        #388e3c 48%,
+        #1b1e21 48%
+    ) !important;
+    background: -webkit-linear-gradient(
+        left,
+        #388e3c 48%,
+        #1b1e21 48%
+    ) !important;
+    background: linear-gradient(45deg, #388e3c 48%, #1b1e21 48%) !important;
+}
+
+.modal-dialog{
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 0rem);
 }
