@@ -9,12 +9,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        @guest
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        @guest
                         @if(Request::url('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="login">{{__('Sign in')}}</a>
@@ -27,7 +27,11 @@
                         </li>
                         @endif
                         @else
-                        <li class="nav-item"><a class="nav-link" href="admin">Dashboard</a></li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="admin">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->email }}

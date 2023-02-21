@@ -10,7 +10,7 @@ class UbigeoController extends Controller
 {
     public function index()
     {
-        $ubigeo_data = Ubigeo::orderBy('ubigeo_created_at', 'desc')->paginate(5);
+        $ubigeo_data = Ubigeo::all();
         return view('table_view.ubigeo', compact('ubigeo_data'));
     }
 

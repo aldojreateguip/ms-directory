@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('content')
-@vite(['resources/css/main_background.css'])
+@vite(['resources/css/main_background.css', 'resources/css/login_styles.css'])
 <div class="log-box-sections">
     <div class="left-box">
         <h1>{{__('Sign in')}}</h1>

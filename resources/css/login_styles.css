@@ -12,7 +12,7 @@
     color: rgba(255, 255, 255, 0.822);
   }
 
-nav,
+/* nav,
 body,
 div,
 h1,
@@ -23,7 +23,7 @@ h5,
 a,
 i {
     font-family: Montserrat-Regular;
-}
+} */
 
 :root {
     --margin-top: 3.5rem;

@@ -1,11 +1,6 @@
 <section class="content-header">
     <div class="container-fluid">
         @yield('table_title')
-        <br>
-        <button type="button" class="btn btn-primary" id="add_btn_record" name="add_btn_record" data-bs-toggle="modal" data-bs-target="#addRecord">
-            <i class="fa-solid fa-square-plus"></i>
-            <span>Agregar Registro</span>
-        </button>
     </div>
 </section>
 <section class="content">
@@ -13,21 +8,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+                    <button type="button" class="btn-primary btn-sm" id="add_btn_record" name="add_btn_record" data-bs-toggle="modal" data-bs-target="#addRecord">
+                        <i class="fa-solid fa-square-plus"></i>
+                        <span>Nuevo Registro</span>
+                    </button>
                 </div>
                 <div class="card-body table-responsive">
-                    <div class="dataTables_wrapper dt-bootstrap4">
+                    <div class="dataTables_wrapper">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-hover text-nowrap">
-                                    <thead>
+                                <table id="record_data" class="hover display stripe order-column compact">
+                                    <thead class="bg-primary text-white">
                                         @yield('head_data')
                                     </thead>
                                     <tbody>
@@ -36,16 +27,70 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <ul class="pagination pagination-sm m-0 float-right">
-                                    @yield('pagination')
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section>@vite(['resources/js/forms.js'])
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="//cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#record_data').DataTable({
+            "lengthMenu": [
+                [5, 10, 50, -1],
+                [5, 10, 50, "All"]
+            ],
+            pagingType: 'full_numbers',
+            language: {
+                "decimal": ",",
+                "thousands": ".",
+                "info": "Mostrando _START_ al _END_ de _TOTAL_",
+                "infoEmpty": "Mostrando 0 de 0 - total 0",
+                "infoPostFix": "",
+                "infoFiltered": "(total registros: _MAX_)",
+                "loadingRecords": "Cargando...",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "searchPlaceholder": "Término de búsqueda",
+                "zeroRecords": "No se encontraron resultados",
+                "emptyTable": "Ningún dato disponible en esta tabla",
+                "aria": {
+                    "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                //only works for built-in buttons, not for custom buttons
+                "buttons": {
+                    "create": "Nuevo",
+                    "edit": "Cambiar",
+                    "remove": "Borrar",
+                    "copy": "Copiar",
+                    "csv": "fichero CSV",
+                    "excel": "tabla Excel",
+                    "pdf": "documento PDF",
+                    "print": "Imprimir",
+                    "colvis": "Visibilidad columnas",
+                    "collection": "Colección",
+                    "upload": "Seleccione fichero...."
+                },
+                "select": {
+                    "rows": {
+                        _: '%d filas seleccionadas',
+                        0: 'clic fila para seleccionar',
+                        1: 'una fila seleccionada'
+                    }
+                }
+            }
+        });
+    });
+</script>

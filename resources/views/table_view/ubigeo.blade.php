@@ -1,4 +1,8 @@
-@extends('template')
+@extends('load_table_layout')
+
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+@endsection
 
 @section('table_title')
 <h1>Lista Ubigeo</h1>
@@ -6,18 +10,10 @@
 
 @section('head_data')
 <tr>
-    <th>
-        {{__('actions')}}
-    </th>
-    <th>
-        {{__('country')}}
-    </th>
-    <th>
-        {{__('department')}}
-    </th>
-    <th>
-        {{__('municipality')}}
-    </th>
+    <th>{{__('actions')}}</th>
+    <th>{{__('country')}}</th>
+    <th>{{__('department')}}</th>
+    <th>{{__('municipality')}}</th>
 </tr>
 @endsection
 
@@ -37,10 +33,6 @@
     <td>{{ $item->ubigeo_municipality}}</td>
 </tr>
 @endforeach
-@endsection
-
-@section('pagination')
-{!! $ubigeo_data->links() !!}
 @endsection
 
 @section('modals')
@@ -151,10 +143,9 @@
         </div>
     </div>
 </div>
-
 @endsection
 
-@section('scripts')
+@section('js')
 <script>
     $(document).ready(function() {
         $(document).on('click', '.editbtn', function() {
@@ -171,13 +162,5 @@
             });
         });
     });
-</script>
-
-<script>
-    Swal.fire(
-        'Techsolutionstuff!',
-        'You clicked the button!',
-        'success'
-    )
 </script>
 @endsection

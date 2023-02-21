@@ -8,7 +8,6 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                "resources/css/app.css",
                 "resources/js/app.js",
                 "resources/js/forms.js",
                 "resources/css/login_styles.css",
@@ -21,8 +20,8 @@ export default defineConfig({
         alias: {
             "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
             "~bootstrap-icons": path.resolve(__dirname,"node_modules/bootstrap-icons"),
-            "~admin-lte":path.resolve(__dirname, "node_modules/admin-lte"),
             $: "jQuery",
+            "~admin-lte":path.resolve(__dirname, "node_modules/admin-lte"),
             "~fa":path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/scss"),
         },
     },

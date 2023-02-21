@@ -96,9 +96,10 @@ inputs.forEach((input) => {
     input.addEventListener("blur", validate);
 });
 
-addmodal.addEventListener("hidden.bs.modal", resetform);
-editmodal.addEventListener("hidden.bs.modal", resetaform);
+// addmodal.addEventListener("hidden.bs.modal", resetform);
+// editmodal.addEventListener("hidden.bs.modal", resetaform);
 
 // forms.addEventListener("submit", (e) => {
 //     e.preventDefault();
 // });
+
