@@ -46,22 +46,49 @@
     <!--sidebar user-box -->
     <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-transition os-host-overflow-x">
 
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="./assets/user_logo.png" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
+      <div class="user-panel mt-2">
+        <ul id="user-panel" class="nav nav-pills nav-sidebar nav-child-ident flex-column " data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="#" class="nav-link user-panel-item">
+              <div class="image">
+                <img src="./assets/user_logo.png" class="img-circle elevation-2" alt="User Image">
+              </div>
+              <p>
+                @auth
+                {{ Auth::user()->email }}
+                @endauth
+              </p>
+              <i class="right fas fa-angle-left"></i>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="perfil" class="nav-link">
+                  <i class="fa-regular fa-circle"></i>
+                  <p>Perfil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('logout')}}" class="nav-link">
+                  <i class="fa-regular fa-circle"></i>
+                  <p>Logout</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- <div class="info">
           <a href="#" class="d-block dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            @auth
-            {{ Auth::user()->email }}&nbsp;&nbsp;&nbsp;
-            @endauth
+           
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </a>
-        </div>
+        </div> -->
+
+
       </div>
       <!--sidebar body-->
       <div class="mt-2">
-        <ul class="nav nav-pills nav-sidebar nav-child-ident flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul id="navigation-panel" class="nav nav-pills nav-sidebar nav-child-ident flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
 
@@ -73,7 +100,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="Institutional_Tables" class="nav-link">
+            <a class="nav-link">
               <p>Institucional<i class="right fas fa-angle-left"></i></p>
             </a>
 
@@ -120,7 +147,20 @@
   @yield('modals')
 
   @yield('js')
+  <script>
+    /** add active class and stay opened when selected */
+    var url = window.location;
+    const allLinks = document.querySelectorAll('.nav-item a');
+    const currentLink = [...allLinks].filter(e => {
+      return e.href == url;
+    });
 
+    if (currentLink.length > 0) { //this filter because some links are not from menu
+      currentLink[0].classList.add("active");
+      currentLink[0].closest(".nav-treeview").style.display = "block";
+      currentLink[0].closest(".has-treeview").classList.add("active");
+    }
+  </script>
 
 </body>
 
