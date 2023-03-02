@@ -19,7 +19,7 @@
   <nav class="main-header navbar navbar-expand navbar-dark mx-background-top-linear">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" data-auto-collapse-size="768">
+        <a class="nav-link" data-widget="pushmenu" role="button">
           <i class="fas fa-bars"></i>
         </a>
       </li>
@@ -68,22 +68,17 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('logout')}}" class="nav-link">
+                <a href="{{url('logout')}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class="fa-regular fa-circle"></i>
                   <p>Logout</p>
                 </a>
+                <form action="{{url('logout')}}" method="post" id="logout-form" style="display: none;">
+                  @csrf
+                </form>
               </li>
             </ul>
           </li>
         </ul>
-
-        <!-- <div class="info">
-          <a href="#" class="d-block dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-           
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          </a>
-        </div> -->
-
 
       </div>
       <!--sidebar body-->
@@ -101,6 +96,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link">
+              <i class="bi bi-asterisk"></i>
               <p>Institucional<i class="right fas fa-angle-left"></i></p>
             </a>
 

@@ -37,39 +37,42 @@
 
 @section('modals')
 <div class="modal fade" id="addRecord" data-keyboard="false" tabindex="-1" data-backdrop="static" aria-labelledby="addRecordLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="forms__content">
-            <div class="forms__header">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header mx-background-top-linear">
                 <h3 class="modal-title" id="addUbigeoLabel">Ingrese datos de nuevo registro</h3>
             </div>
-            <form action="{{ url ('add-ubigeo') }}" class="forms" name="forms" id="forms" method="POST">
+            <form action="{{url ('add-ubigeo')}}" class="needs-validation" novalidate method="POST">
                 @csrf
                 <!-- Group: Country -->
-                <div class="forms__group" id="group__country">
-                    <label for="country" class="forms__label">{{__('country')}}</label>
-                    <div class="forms__group-input">
-                        <input type="text" class="forms__input" name="country" id="country" placeholder="Perú">
-                        <i class="forms__validation-state bi bi-x-circle-fill"></i>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="country">{{__('country')}}</label>
+                        <input type="text" name="country" id="country" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter only letters
+                        </div>
                     </div>
-                    <p class="forms__input-error">Este campo solo puede contener letras</p>
                 </div>
                 <!-- Group: Department -->
-                <div class="forms__group" id="group__department">
-                    <label for="department" class="forms__label">{{__('department')}}</label>
-                    <div class="forms__group-input">
-                        <input type="text" class="forms__input" name="department" id="department" placeholder="Loreto">
-                        <i class="forms__validation-state bi bi-x-circle-fill"></i>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="department">{{__('department')}}</label>
+                        <input type="text" name="department" id="department" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter only letters
+                        </div>
                     </div>
-                    <p class="forms__input-error">Este campo solo puede contener letras</p>
                 </div>
                 <!-- Group: Municipality -->
-                <div class="forms__group" id="group__municipality">
-                    <label for="municipality" class="forms__label">{{__('municipality')}}</label>
-                    <div class="forms__group-input">
-                        <input type="text" class="forms__input" name="municipality" id="municipality" placeholder="Maynas">
-                        <i class="forms__validation-state bi bi-x-circle-fill"></i>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="municipality">{{__('municipality')}}</label>
+                        <input type="text" name="municipality" id="municipality" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter only letters
+                        </div>
                     </div>
-                    <p class="forms__input-error">Este campo solo puede contener letras</p>
                 </div>
                 <!-- Group: Error Message -->
                 <div class="forms__message" id="forms_message">
@@ -79,10 +82,8 @@
                     </p>
                 </div>
                 <!-- Group: Buttons -->
-                <div class="forms__group forms__group-btn-submit">
-                    <button type="submit" class="forms__btn">{{__('save')}}</button>
-                    <p class="forms__message-success" id="forms__message-success">success</p>
-                </div>
+                <button type="submit" value="submit" class="btn btn-primary">{{__('save')}}</button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-danger">{{__('Close')}}</button>
             </form>
         </div>
     </div>
@@ -162,5 +163,26 @@
             });
         });
     });
+</script>
+
+<script>
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
 </script>
 @endsection

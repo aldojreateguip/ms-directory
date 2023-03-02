@@ -1,10 +1,4 @@
-<div class="modal fade" id="addRecord" data-keyboard="false" tabindex="-1" data-backdrop="static" aria-labelledby="addRecordLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="forms__content">
-            <div class="forms__header">
-                <h3 class="modal-title" id="addUbigeoLabel">Ingrese datos de nuevo registro</h3>
-            </div>
-            <form action="{{ url ('add-ubigeo') }}" class="forms" name="forms" id="forms" method="POST">
+<form action="{{ url ('add-ubigeo') }}" class="forms" name="forms" id="forms" method="POST">
                 @csrf
                 <!-- Group: Country -->
                 <div class="forms__group" id="group__country">
@@ -43,9 +37,7 @@
                 <!-- Group: Buttons -->
                 <div class="forms__group forms__group-btn-submit">
                     <button type="submit" class="forms__btn">{{__('save')}}</button>
-                    <p class="forms__message-success" id="forms__message-success">success</p>
+                    <button type="button" data-dismiss="modal" class="forms__btn btn-red">{{__('Close')}}</button>
+                    <p class="forms__message-success" id="forms__message-success" style="background: lightcoral;">success</p>
                 </div>
             </form>
-        </div>
-    </div>
-</div>

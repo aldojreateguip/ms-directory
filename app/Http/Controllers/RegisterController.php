@@ -48,8 +48,8 @@ class RegisterController extends Controller
         $persondata->save();     
 
         $userdata = new User;
-        $userdata->user_username = $persondata->person_email;
-        $userdata->user_password = Hash::make($request->input('password'));
+        $userdata->email = $persondata->person_email;
+        $userdata->password = Hash::make($request->input('password'));
         $userdata->user_state = '1';
         $userdata->person_id = $persondata->person_id;
         $userdata->save();
