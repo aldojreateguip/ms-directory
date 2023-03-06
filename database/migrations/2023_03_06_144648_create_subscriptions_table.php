@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('subs_id');
             $table->unsignedInteger('person_id');
-            $table->unsignedInteger('event_id');
+            $table->unsignedInteger('discipline_id');
             $table->string('subs_description');
+            $table->integer('subs_state')->lenght(1)->unsigned();
             $table->foreign('person_id')->references('person_id')->on('person');
+            $table->foreign('discipline_id')->references('discipline_id')->on('discipline');
             $table->timestamps();
         });
     }

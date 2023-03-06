@@ -1,6 +1,5 @@
 <?php
 
-use Doctrine\DBAL\Schema\Table;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rol', function (Blueprint $table) {
-            $table->increments('rol_id');
-            $table->string('rol_description',250);
+        Schema::create('subarea', function (Blueprint $table) {
+            $table->increments('subarea_id');
+            $table->unsignedInteger('area_id');
+            $table->string('subarea_description', 250);
+            $table->foreign('area_id')->references('area_id')->on('area');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rol');
+        Schema::dropIfExists('subarea');
     }
 };
