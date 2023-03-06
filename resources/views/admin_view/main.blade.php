@@ -138,8 +138,6 @@
   <div class="content-wrapper">
     @yield('content')
   </div>
-  <!-- </div> -->
-
   @yield('modals')
 
   @yield('js')

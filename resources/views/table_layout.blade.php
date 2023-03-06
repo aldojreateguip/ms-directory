@@ -1,5 +1,14 @@
 <section class="content-header">
     <div class="container-fluid">
+        <h1>{{__('Record Data')}}
+            <button type="button" class="btn-primary btn-sm addbtn" id="addbtn">
+                <i class="fa-solid fa-square-plus"></i>
+                <span>Nuevo Registro</span>
+            </button>
+        </h1>
+        <hr>
+        @yield('forms')
+        <hr>
         @yield('table_title')
     </div>
 </section>
@@ -7,12 +16,6 @@
     <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <button type="button" class="btn-primary btn-sm" id="add_btn_record" name="add_btn_record" data-bs-toggle="modal" data-bs-target="#addRecord">
-                        <i class="fa-solid fa-square-plus"></i>
-                        <span>Nuevo Registro</span>
-                    </button>
-                </div>
                 <div class="card-body table-responsive">
                     <div class="dataTables_wrapper">
                         <div class="row">
@@ -91,6 +94,17 @@
                     }
                 }
             }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.addbtn', function() {
+            document.getElementById('aform').classList.remove("hidden_form")
+            document.getElementById('uform').classList.add("hidden_form")
+            document.getElementById('aform').reset();
+            document.getElementById('uform').reset();
         });
     });
 </script>

@@ -298,7 +298,19 @@ input {
     transition: 0.2s ease all;
 }
 
+.crud-content{
+    display: flex;
+    background: white;
+    border: 1px solid #9d9d9d;
+    border-radius: 0.5rem;
+    padding: 20px 0px;
+    margin: 10px 10px;
+    box-shadow: 0 0 5px rgba(163, 163, 163, 0.4);
+}
 
+.hidden_form{
+    display: none;
+}
 // @media (min-width: 200px) and (max-width: 599px) {
 //     .home-container {
 //         transition: 0.2s ease all;
