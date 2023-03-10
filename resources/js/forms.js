@@ -27,3 +27,4 @@ inputs.forEach((input) => {
 // forms.addEventListener("submit", (e) => {
 //     e.preventDefault();
 // });
+

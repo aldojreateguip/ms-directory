@@ -3,27 +3,29 @@ const patterns = {
     user: /^[a-zA-Z0-9]{4,16}$/,
     onlyletters: /^[(a-zA-ZÀ-ÿ)+\s?]+$/,
     words: /([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$/,
-    password: /^.{8,20}$/, // 4 a 12 digitos.
+    // password: /^[A-Za-z0-9+_%@!$*~-]$/, // 4 a 12 digitos.
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    phone_number: /^\d{7,14}$/,
+    phone_number: /^\d$/,
     iddoc: /^(?:\d{8}|\d{20})$/,
 };
 
-function testInput(event) {
+function alphaonlyinput(event) {
     var value = String.fromCharCode(event.which);
     var pattern = patterns.onlyletters;
     return pattern.test(value);
 }
 
-$("#acountry").bind("keypress", testInput);
-$("#adepartment").bind("keypress", testInput);
-$("#amunicipality").bind("keypress", testInput);
-$("#ucountry").bind("keypress", testInput);
-$("#udepartment").bind("keypress", testInput);
-$("#umunicipality").bind("keypress", testInput);
+$("#acountry").bind("keypress", alphaonlyinput);
+$("#adepartment").bind("keypress", alphaonlyinput);
+$("#amunicipality").bind("keypress", alphaonlyinput);
+$("#ucountry").bind("keypress", alphaonlyinput);
+$("#udepartment").bind("keypress", alphaonlyinput);
+$("#umunicipality").bind("keypress", alphaonlyinput);
 
-// function alphaOnly(event) {
-//     var key = event.keyCode;
-//     `enter code here`;
-//     return (key >= 65 && key <= 90) || key == 8;
-// }
+var apasswordinput = document.getElementById("apassword");
+apasswordinput.setAttribute("minlength", "8");
+apasswordinput.setAttribute("maxlength", "20");
+apasswordinput.setAttribute("disallowedwords", "{{username}}");
+
+var anumericinput = document.getElementById("astate");
+// apasswordinput.setAttribute("patterns", );

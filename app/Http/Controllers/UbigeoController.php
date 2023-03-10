@@ -54,7 +54,7 @@ class UbigeoController extends Controller
 
     public function destroy(Request $request)
     {
-        $id = $request->input('delete_id');
+        $id = $request->input('record_id');
         $ubigeo = Ubigeo::find($id);
         $ubigeo->delete();
         // return redirect()->back()->with('status', 'Registro Eliminado Exitosamente.');

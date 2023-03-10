@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_permiso_rol', function (Blueprint $table) {
-            $table->id();
+        Schema::create('user_role', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('role_id');
+            $table->foreign('role_id')->references('role_id')->on('role');
+            $table->foreign('user_id')->references('user_id')->on('user');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_permiso_rol');
+        Schema::dropIfExists('user_role');
     }
 };

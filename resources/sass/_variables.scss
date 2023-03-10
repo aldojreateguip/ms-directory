@@ -12,7 +12,7 @@ span {
     // font-family: Montserrat-Regular;
     text-decoration: none !important;
 }
-button.action-btn{
+button.action-btn {
     outline: none;
     border: none;
 }
@@ -31,7 +31,7 @@ input {
     height: 25px !important;
     width: 25px !important;
 }
-.action-btn>i{
+.action-btn > i {
     margin: 0;
 }
 
@@ -127,7 +127,7 @@ input {
 .forms__addres {
     grid-column: span 2;
 }
-.forms__group-btn-submit{
+.forms__group-btn-submit {
     grid-column: span 3;
 }
 .forms__message {
@@ -170,7 +170,7 @@ input {
     cursor: pointer;
     transition: 0.1s ease all;
 }
-.btn-red{
+.btn-red {
     background: #f11313 !important;
 }
 .forms__btn:hover {
@@ -241,7 +241,7 @@ input {
     line-height: var(--ms-title-heiht);
     margin-top: 2rem;
     color: #239c64;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     text-align: center;
     background: transparent;
     transition: 0.2s ease all;
@@ -298,8 +298,11 @@ input {
     transition: 0.2s ease all;
 }
 
-.crud-content{
-    display: flex;
+.crud-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 2px;
     background: white;
     border: 1px solid #9d9d9d;
     border-radius: 0.5rem;
@@ -308,9 +311,6 @@ input {
     box-shadow: 0 0 5px rgba(163, 163, 163, 0.4);
 }
 
-.hidden_form{
-    display: none;
-}
 // @media (min-width: 200px) and (max-width: 599px) {
 //     .home-container {
 //         transition: 0.2s ease all;
@@ -423,22 +423,22 @@ input {
     background: linear-gradient(120deg, #239c64 47%, #1f8354 50%) !important;
 }
 
-.nav.nav-treeview{
+.nav.nav-treeview {
     padding-left: 10px;
 }
-.main-header{
+.main-header {
     padding-left: 10px !important;
     padding-right: 10px !important;
 }
-.user-panel-item{
+.user-panel-item {
     display: flex !important;
     vertical-align: middle !important;
     padding: 5px 0px !important;
 }
-.user-panel-item i{
+.user-panel-item i {
     margin-top: 5px !important;
 }
-.user-panel-item p{
+.user-panel-item p {
     margin-top: 5px !important;
     padding-left: 10px !important;
 }

@@ -1,7 +1,7 @@
 <section class="content-header">
     <div class="container-fluid">
         <h1>{{__('Record Data')}}
-            <button type="button" class="btn-primary btn-sm addbtn" id="addbtn">
+            <button type="button" class="btn-primary btn-sm addbtn" id="addbtn" data-bs-toggle="collapse" data-bs-target="#add_record_box" aria-controls="add_record_box" aria-expanded="false">
                 <i class="fa-solid fa-square-plus"></i>
                 <span>Nuevo Registro</span>
             </button>
@@ -40,9 +40,11 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="//cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json"></script>
 <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+<!--translated tags-->
 <script>
     $(document).ready(function() {
-        $('#record_data').DataTable({
+        table = $('#record_data').DataTable({
             "lengthMenu": [
                 [5, 10, 50, -1],
                 [5, 10, 50, "All"]
@@ -101,8 +103,9 @@
 <script>
     $(document).ready(function() {
         $(document).on('click', '.addbtn', function() {
-            document.getElementById('aform').classList.remove("hidden_form")
-            document.getElementById('uform').classList.add("hidden_form")
+            document.getElementById('update_record_box').classList.remove("show");
+            document.getElementById('aform').classList.remove("was-validated");
+            document.getElementById('uform').classList.remove("was-validated");
             document.getElementById('aform').reset();
             document.getElementById('uform').reset();
         });

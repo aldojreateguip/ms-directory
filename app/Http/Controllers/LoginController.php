@@ -20,7 +20,14 @@ class LoginController extends Controller
 
     public function show()
     {
-        return view('login_view.login');
+        $user_auth = Auth::user();
+        if(!$user_auth)
+        {
+            return view('login_view.login');
+        }
+        else{
+            return redirect()->intended('admin');
+        }
     }
 
     public function authenticate(Request $request)

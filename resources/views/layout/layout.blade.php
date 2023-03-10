@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    @extends('header')
+    @include('layout.header')
     <div class="main-container">
         @yield('content')
     </div>

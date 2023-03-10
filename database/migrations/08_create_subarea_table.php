@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('subarea', function (Blueprint $table) {
             $table->increments('subarea_id');
             $table->unsignedInteger('area_id');
-            $table->string('subarea_description', 250);
+            $table->string('subarea_description', 250)->unique();
             $table->foreign('area_id')->references('area_id')->on('area');
             $table->timestamps();
         });

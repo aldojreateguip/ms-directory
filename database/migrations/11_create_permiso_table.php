@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('permiso', function (Blueprint $table) {
-            $table->id();
+        Schema::create('permission', function (Blueprint $table) {
+            $table->increments('permission_id');
+            $table->string('permission_key', 20)->unique();
+            $table->string('permission_decription', 250)->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permiso');
+        Schema::dropIfExists('permission');
     }
 };

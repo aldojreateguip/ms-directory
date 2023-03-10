@@ -128,10 +128,11 @@
     </td>
 </tr>
 @endforeach
-
-
+@endsection
 
 @section('modals')
+
+@endsection
 
 <div class="modal fade" id="user_roles" tabindex="-1" role="dialog" aria-labelledby="userRolesLabel" aria-hidden="false">
     <div class="modal-dialog">
@@ -153,7 +154,8 @@
                                     <th>{{__('Description')}}</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tdbodyRoles">
+                               
                             </tbody>
                         </table>
                     </div>
@@ -167,8 +169,6 @@
         </div>
     </div>
 </div>
-@endsection
-
 
 
 @section('js')
@@ -292,13 +292,10 @@
             // if (trCreated != null) {
             //     tdbody.innerHTML = "";
             // }
-            var filterValue = $(this).val();
+            var record_id = $(this).val();
             $.ajax({
-                data: {
-                    'filter': filterValue
-                },
                 type: "GET",
-                url: "get-roles",
+                url: "user/get-roles/" + record_id,
                 success: function(response) {
                     console.log(response);
                     // var length = response.user_role.length;

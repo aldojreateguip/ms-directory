@@ -45,6 +45,8 @@ Route::delete('delete-institution', [InstitutionController::class, 'destroy']);
 Route::get('user', [UserController::class, 'index']);
 Route::post('add-user', [UserController::class, 'store']);
 Route::get('edit-user/{id}', [UserController::class, 'edit']);
+// Route::get('user/get-roles/{id}', [UserController::class, 'getRoles']);
+Route::get('/get-roles', [UserController::class, 'getRoles']);
 Route::put('update-user', [UserController::class, 'update']);
 Route::delete('delete-user', [UserController::class, 'destroy']);
 //Person
