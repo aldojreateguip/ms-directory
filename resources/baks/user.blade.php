@@ -132,7 +132,6 @@
 
 @section('modals')
 
-@endsection
 
 <div class="modal fade" id="user_roles" tabindex="-1" role="dialog" aria-labelledby="userRolesLabel" aria-hidden="false">
     <div class="modal-dialog">
@@ -154,7 +153,7 @@
                                     <th>{{__('Description')}}</th>
                                 </tr>
                             </thead>
-                            <tbody id="tdbodyRoles">
+                            <tbody>
                                
                             </tbody>
                         </table>
@@ -169,6 +168,7 @@
         </div>
     </div>
 </div>
+@endsection
 
 
 @section('js')

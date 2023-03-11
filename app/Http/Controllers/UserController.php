@@ -19,24 +19,7 @@ class UserController extends Controller
         return view('table_view.user', compact('data'));
     }
 
-    public function getRoles(Request $request)
-    {
-        $filter = $request->input('filter');
-        $filteredData = DB::table('user_role as ur')->select(
-            'ur.user_id',
-            'r.role_id as role_id',
-            'r.role_description as role_description'
-        )
-            ->join('role as r', 'ur.role_id', '=', 'r.role_id')
-            ->where('ur.user_id', $filter)->get();
-        print_r($filteredData);
-        exit();
-        if ($filteredData) {
-            return view('table_roles', compact('filteredData'));
-        } else {
-            return response()->json(['error' => 'No se encontraron resultados para el filtro proporcionado.']);
-        }
-    }
+    
     public function store(Request $request)
     {
         $request->validate([
