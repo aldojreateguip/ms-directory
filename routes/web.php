@@ -42,13 +42,15 @@ Route::get('edit-institution/{id}', [InstitutionController::class, 'edit']);
 Route::put('update-institution', [InstitutionController::class, 'update']);
 Route::delete('delete-institution', [InstitutionController::class, 'destroy']);
 //Person
-Route::get('user', [UserController::class, 'index']);
+Route::get('user', [UserController::class, 'index'])->name('user');
 Route::post('add-user', [UserController::class, 'store']);
 Route::get('edit-user/{id}', [UserController::class, 'edit']);
-// Route::get('user/get-roles/{id}', [UserController::class, 'getRoles']);
-// Route::get('/get-roles', [UserController::class, 'getRoles']);
 Route::put('update-user', [UserController::class, 'update']);
 Route::delete('delete-user', [UserController::class, 'destroy']);
+Route::get('user/get-roles/{id}', [UserController::class, 'get_roles'])->name('getroles');
+Route::put('user/change-role-state/{id}', [UserController::class, 'change_role_state']);
+Route::patch('user/change_role_state/{id}', [UserController::class, 'change_state']);
+Route::put('user/change_role/{id}', [UserController::class, 'change']);
 //Person
 Route::get('institution_person', [Institution_PersonController::class, 'index']);
 Route::post('add-institution_person', [Institution_PersonController::class, 'store']);

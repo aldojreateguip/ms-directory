@@ -34,13 +34,6 @@
                     Please complete this field
                 </div>
             </div>
-            <div class="col">
-                <label for="aroleid">{{__('RoleId')}}</label>
-                <input type="number" name="aroleid" id="aroleid" class="form-control" required>
-                <div class="invalid-feedback">
-                    Please complete this field
-                </div>
-            </div>
         </div>
         <div class="row-md" style="display: flex; justify-content: center;">
             <button type="submit" value="submit" class="btn btn-primary" style="width: 20rem;">{{__('save')}}</button>
@@ -69,21 +62,6 @@
                     Please complete this field
                 </div>
             </div>
-
-            <div class="col">
-                <label for="upersonid">{{__('PersonId')}}</label>
-                <input type="number" name="upersonid" id="upersonid" class="form-control" required>
-                <div class="invalid-feedback">
-                    Please complete this field
-                </div>
-            </div>
-            <div class="col">
-                <label for="uroleid">{{__('RoleId')}}</label>
-                <input type="number" name="uroleid" id="uroleid" class="form-control" required>
-                <div class="invalid-feedback">
-                    Please complete this field
-                </div>
-            </div>
         </div>
         <div class="row-md" style="display: flex; justify-content: center;">
             <button type="submit" value="submit" class="btn btn-success" style="width: 20rem;">{{__('update')}}</button>
@@ -100,9 +78,8 @@
 @section('head_data')
 <tr>
     <th>{{__('actions')}}</th>
-    <th>{{__('password')}}</th>
     <th>{{__('state')}}</th>
-    <th>{{__('person_id')}}</th>
+    <th>{{__('person')}}</th>
     <th>{{__('Roles')}}</th>
 </tr>
 @endsection
@@ -118,58 +95,37 @@
             <i class="bi bi-x-square"></i>
         </button>
     </td>
-    <td>{{ $item->password}}</td>
-    <td>{{ $item->user_state}}</td>
-    <td>{{ $item->person_id}}</td>
     <td>
-        <button type="buttom" title="Ver Roles" value="{{$item->user_id}}" class="action-btn btn-info roles" data-bs-toggle="modal" data-bs-target="#user_roles" aria-controls="user_roles" aria-expanded="false">
+        @if($item->user_state == 1)
+        Habilitado
+        @else
+        Deshabilitado
+        @endif
+    </td>
+    <td>{{ $item->person_name}} {{$item->person_surname}}</td>
+    <td>
+        <button type="button" title="Ver Roles" value="{{$item->user_id}}" class="action-btn btn-info roles" data-bs-toggle="modal" data-bs-target="#user_roles" aria-controls="user_roles" aria-expanded="false">
             <i class="bi bi-file-earmark-person-fill"></i>
         </button>
+        <!-- <a href="{{ route('getroles',['id'=>$item->user_id]) }}" class="action-btn btn-info roles">
+            <i class="bi bi-file-earmark-person-fill"></i>
+        </a> -->
     </td>
 </tr>
 @endforeach
+
+
+
 @endsection
 
-@section('modals')
-
-
+@yield('filldata')
 <div class="modal fade" id="user_roles" tabindex="-1" role="dialog" aria-labelledby="userRolesLabel" aria-hidden="false">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h3 class="modal-title">Roles de usuario</h3>
-                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close" style="font-size: 24px;">
-                    <i class="bi bi-x-octagon-fill"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card">
-                    <div class="card-body table-responsive p-0" style="height: 300px;">
-                        <table id="user_roles_data" class="table table-head-fixed text-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>{{__('User id')}}</th>
-                                    <th>{{__('Role id')}}</th>
-                                    <th>{{__('Description')}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                            </tbody>
-                        </table>
-                    </div>
+        <div class="modal-content" id="role_user">
 
-                    <!-- @include('table_roles') -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-            </div>
         </div>
     </div>
 </div>
-@endsection
-
 
 @section('js')
 <script>
@@ -282,56 +238,43 @@
     });
 </script>
 
-<!-- create roles table-->
+<!-- roles table -->
 <script>
     $(document).ready(function() {
         $(document).on('click', '.roles', function() {
-            // var tdbody = document.getElementById("tdbodyRoles");
-            // var trCreated = document.getElementById("cells");
-
-            // if (trCreated != null) {
-            //     tdbody.innerHTML = "";
-            // }
-            var record_id = $(this).val();
+            var id = $(this).val();
             $.ajax({
                 type: "GET",
-                url: "user/get-roles/" + record_id,
+                url: "user/get-roles/" + id,
+                success: function(response) {
+                    // console.log(response);
+                    $('#role_user').html(response);
+                }
+            });
+
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.role_button_state', function() {
+            var ur_id = this.getAttribute('data-id');
+            var user_id = $(this).val();
+            var state = '0';
+
+            $.ajax({
+                data: {
+                    ur_id: ur_id,
+                    user_id: ur_id,
+                    state: state,
+                    _token: "{{ csrf_token() }}"
+                },
+                type: "PUT",
+                url: "user/change_role/" + ur_id,
                 success: function(response) {
                     console.log(response);
-                    // var length = response.user_role.length;
-                    // for (let i = 0; i < length; i++) {
-
-                    //     const contenedor = document.getElementById('tdbodyRoles');
-                    //     const tr = document.createElement('tr');
-                    //     const user_id = document.createElement('td');
-                    //     const role_id = document.createElement('td');
-                    //     const description = document.createElement('td');
-
-                    //     tr.setAttribute('id', 'cells');
-
-                    //     user_id.setAttribute('name', 'cell');
-                    //     role_id.setAttribute('name', 'cell');
-                    //     description.setAttribute('name', 'cell');
-
-                    //     const user_id_p = document.createElement('p');
-                    //     const role_id_p = document.createElement('p');
-                    //     const description_p = document.createElement('p');
-                    //     user_id_p.innerText = response.user_role[i].user_id;
-                    //     role_id_p.innerText = response.user_role[i].role_id;
-                    //     description_p.innerText = response.user_role[i].role_description;
-
-                    //     // Agregar el elemento p como hijo del elemento div
-                    //     user_id.appendChild(user_id_p);
-                    //     role_id.appendChild(role_id_p);
-                    //     description.appendChild(description_p);
-
-                    //     // Agregar el elemento div como hijo del elemento contenedor
-                    //     tr.appendChild(user_id);
-                    //     tr.appendChild(role_id);
-                    //     tr.appendChild(description);
-
-                    //     contenedor.appendChild(tr);
-                    // }
+                    $('#role_user').html(response);
                 }
             });
 

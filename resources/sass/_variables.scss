@@ -442,3 +442,22 @@ input {
     margin-top: 5px !important;
     padding-left: 10px !important;
 }
+.role_buton_state {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    cursor: none !important;
+    background: white !important;
+}
+.role_button_state.ena {
+    color: #119200 !important;
+}
+.role_button_state.disa {
+    transform: rotate(180deg) !important;
+    color: red !important;
+}
+.role_button_state i {
+    font-size: 24px !important;
+    border: none !important;
+    cursor: pointer !important;
+}
