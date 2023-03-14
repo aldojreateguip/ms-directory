@@ -247,7 +247,6 @@
                 type: "GET",
                 url: "user/get-roles/" + id,
                 success: function(response) {
-                    // console.log(response);
                     $('#role_user').html(response);
                 }
             });
@@ -260,20 +259,19 @@
     $(document).ready(function() {
         $(document).on('click', '.role_button_state', function() {
             var ur_id = this.getAttribute('data-id');
-            var user_id = $(this).val();
-            var state = '0';
+            var user_id = this.getAttribute('data-user');
+            var state = this.getAttribute('data-state');
 
             $.ajax({
                 data: {
                     ur_id: ur_id,
-                    user_id: ur_id,
+                    user_id: user_id,
                     state: state,
                     _token: "{{ csrf_token() }}"
                 },
                 type: "PUT",
                 url: "user/change_role/" + ur_id,
                 success: function(response) {
-                    console.log(response);
                     $('#role_user').html(response);
                 }
             });

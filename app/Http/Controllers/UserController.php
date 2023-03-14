@@ -46,10 +46,14 @@ class UserController extends Controller
     {
         $id = request('ur_id');
         $user_id = request('user_id');
-
+        $state = request('state');
         $data = User_Role::find($id);
-        $data->state = request('state');
+        $data->state = $state;
         $data->update();
+        // echo($id);
+        // echo($user_id);
+        // echo($state);
+        // exit();
         $fill = DB::table('user_role as ur')->select(
             'ur.id',
             'p.person_name',

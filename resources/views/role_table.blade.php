@@ -23,11 +23,11 @@
                         <tr>
                             <td>
                                 @if($row->state == 1)
-                                <button type="button" title="Habilitado" class="btn role_button_state ena" data-state="{{$row->state}}" data-id="{{$row->id}}" value="{{$row->user_id}}">
+                                <button type="button" title="Habilitado" class="btn role_button_state ena" data-state="0" data-id="{{$row->id}}" data-user="{{$row->user_id}}">
                                     <i class="bi bi-toggle-on"></i>
                                 </button>
                                 @else
-                                <button type="button" title="Deshabilitado" class="btn role_button_state disa" data-state="{{$row->state}}" data-id="{{$row->id}}" value="{{$row->id}}">
+                                <button type="button" title="Deshabilitado" class="btn role_button_state disa" data-state="1" data-id="{{$row->id}}" data-user="{{$row->user_id}}">
                                     <i class="bi bi-toggle-on"></i>
                                 </button>
                                 @endif
