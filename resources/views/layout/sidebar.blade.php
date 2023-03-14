@@ -18,19 +18,19 @@
                             @auth
                             {{ Auth::user()->email }}
                             @endauth
+                            <i class="right fas fa-angle-left"></i>
                         </p>
-                        <i class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="perfil" class="nav-link">
-                                <i class="fa-regular fa-circle"></i>
+                                <i class="bi bi-person-fill-gear user_menu_btn"></i>
                                 <p>Perfil</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{url('logout')}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fa-regular fa-circle"></i>
+                                <i class="bi bi-box-arrow-left user_menu_btn"></i>
                                 <p>Logout</p>
                             </a>
                             <form action="{{url('logout')}}" method="post" id="logout-form" style="display: none;">

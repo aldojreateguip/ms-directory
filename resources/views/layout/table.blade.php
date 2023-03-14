@@ -35,7 +35,9 @@
             </div>
         </div>
     </div>
-</section>@vite(['resources/js/forms.js'])
+</section>
+
+@vite(['resources/js/forms.js'])
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="//cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json"></script>

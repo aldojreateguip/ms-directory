@@ -6,20 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>@yield('title')</title>
-  <!-- <title>Home</title> -->
+  <title>@yield('title', 'Admin')</title>
 
   @yield('css')
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
-  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"> -->
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   @vite(['resources/js/app.js'])
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
   <!-- <div class="wrapper"> -->
   @include('layout.header')
-
 
   @auth
   @include('layout.sidebar')
@@ -49,7 +46,6 @@
       currentLink[0].classList.add("active");
     }
   </script>
-
 </body>
 
 </html>

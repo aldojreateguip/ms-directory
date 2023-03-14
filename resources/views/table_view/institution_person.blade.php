@@ -1,4 +1,4 @@
-@extends('load_table_layout')
+@extends('layout.load_table')
 
 @section('title', 'Institución Persona')
 

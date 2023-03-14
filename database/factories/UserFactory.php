@@ -22,7 +22,7 @@ class UserFactory extends Factory
             'email' => 'aldo@gmail.com',
             'password' => '$2y$10$0KfXiYgqloZ/3RXRfgBXrOMF9Ri9MsOSReP6uHuuoHR0OvjBLablG', // password
             'user_state' => '1',
-            'person_id' => '1'
+            'person_id' => '2'
         ];
     }
 }

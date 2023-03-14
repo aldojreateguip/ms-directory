@@ -1,4 +1,4 @@
-@extends('load_table_layout')
+@extends('layout.load_table')
 
 @section('title', 'Persona')
 
@@ -393,6 +393,7 @@
             $('#delete_id').val(person_id);
         });
     });
+    
     $(document).ready(function() {
         $(document).on('click', '.editbtn', function() {
             document.getElementById('add_record_box').classList.remove("show");
