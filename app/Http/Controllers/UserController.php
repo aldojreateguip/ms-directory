@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -70,49 +71,30 @@ class UserController extends Controller
             return view('layout.role_table', compact('person'));
         }
     }
-    public function change($id)
+    public function change($ur_id)
     {
-        $id = request('ur_id');
         $user_id = request('user_id');
         $state = request('state');
-        $data = User_Role::find($id);
+        
+        $data = User_Role::find($ur_id);
         $data->state = $state;
         $data->update();
 
-        $user_info = DB::table('user as u')->select(
-            'p.person_name',
-            'p.person_surname',
-        )
-            ->join('person as p', 'u.person_id', '=', 'p.person_id')
-            ->where('u.user_id', $user_id)->first();
-
-        $fill = DB::table('user_role as ur')->select(
-            'ur.id',
-            'p.person_name',
-            'ur.state',
-            'ur.user_id',
-            'r.role_id as role_id',
-            'r.role_description as role_description'
-        )
-            ->join('role as r', 'ur.role_id', '=', 'r.role_id')
-            ->join('user as u', 'ur.user_id', '=', 'u.user_id')
-            ->join('person as p', 'p.person_id', '=', 'u.person_id')
-            ->where('ur.user_id', $user_id)->get();
-
-        return view('layout.role_table', compact('fill', 'user_info'));
+        $getdata = $this->get_roles($user_id);
+        return response($getdata);
     }
+
     //start section en proceso
     public function show_add_role()
     {
         $user_id = request('user_id');
         $user_info = DB::table('user as u')->select(
             'p.person_name',
-            'p.person_surname',
         )
             ->join('person as p', 'u.person_id', '=', 'p.person_id')
             ->where('u.user_id', $user_id)->first();
-        echo ($user_id);
-        exit();
+        // echo ($user_id);
+        // exit();
         return view('layout.add_role', compact('user_info'));
     }
     public function add_role()

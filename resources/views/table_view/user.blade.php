@@ -276,7 +276,9 @@
                         timer: 1500
                     })
                 },
-                error: function(response) {}
+                error: function(response) {
+                    alert('FAIL');
+                }
             });
 
         });
