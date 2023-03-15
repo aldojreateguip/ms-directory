@@ -12,8 +12,8 @@
         </a>
     </div>
     <div class="modal-body">
-        <button type="button" class="btn-success btn-sm addrol" data-user="{{$user_info->user_id}}" data-toggle="tooltip" data-bs-placement="right">
-            <i class="bi bi-plus-square-fill"></i> Añadir rol
+        <button type="button" class="btn-dark btn-sm addrol" data-user="{{$user_info->user_id}}" data-toggle="tooltip" data-bs-placement="right">
+            <i class="bi bi-plus-square-fill"></i> Ver roles
         </button>
         <br></br>
         <div class="card">
@@ -49,6 +49,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button id="btnClose_add_role_view" type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
     </div>
 </div>

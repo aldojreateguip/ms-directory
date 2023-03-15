@@ -75,7 +75,7 @@ class UserController extends Controller
     {
         $user_id = request('user_id');
         $state = request('state');
-        
+
         $data = User_Role::find($ur_id);
         $data->state = $state;
         $data->update();
@@ -93,9 +93,13 @@ class UserController extends Controller
         )
             ->join('person as p', 'u.person_id', '=', 'p.person_id')
             ->where('u.user_id', $user_id)->first();
-        // echo ($user_id);
+        $rolelist = DB::table('role as r')
+            ->select('r.role_id', 'r.role_description')
+            ->leftJoin('user_role as ur', 'r.role_id', '=', 'ur.role_id')
+            ->whereNull('ur.role_id')->orderBy('r.role_id')->get();
+        // echo($rolelist);
         // exit();
-        return view('layout.add_role', compact('user_info'));
+        return view('layout.add_role', compact('user_info', 'rolelist'));
     }
     public function add_role()
     {

@@ -46,6 +46,12 @@
       currentLink[0].classList.add("active");
     }
   </script>
+
+  <script>
+    $('#user_roles').on('hidden.bs.modal', function(e){
+      $('#role_user').html('');
+    });
+  </script>
 </body>
 
 </html>
