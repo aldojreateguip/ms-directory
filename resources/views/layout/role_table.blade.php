@@ -31,7 +31,7 @@
                         <tr>
                             <td>
                                 @if($row->state == 1)
-                                <button title="Habilitado" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" class="btn role_button_state ena" data-id="{{$row->id}}" data-user="{{$row->user_id}}" data-state="0" data-user-name="">
+                                <button title="Habilitado" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" class="btn role_button_state ena" data-id="{{$row->id}}" data-user="{{$row->user_id}}" data-state="0">
                                     <i class="bi bi-toggle-on"></i>
                                 </button>
                                 @else

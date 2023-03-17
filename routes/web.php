@@ -51,7 +51,7 @@ Route::delete('delete-user/{id}', [UserController::class, 'delete']);
 Route::get('user/get-roles/{id}', [UserController::class, 'get_roles'])->name('getroles');
 Route::put('user/change_role/{id}', [UserController::class, 'change']);
 Route::get('user/show_add_role', [UserController::class, 'show_add_role']);
-Route::get('user/add_role', [UserController::class, 'add_role']);
+Route::post('user/add_role', [UserController::class, 'add_role']);
 //Person
 Route::get('institution_person', [Institution_PersonController::class, 'index']);
 Route::post('add-institution_person', [Institution_PersonController::class, 'store']);

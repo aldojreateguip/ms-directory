@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Completion\Output\ZshCompletionOutput;
 
 class UserController extends Controller
 {
@@ -56,18 +57,13 @@ class UserController extends Controller
             // exit();
             return view('layout.role_table', compact('fill', 'user_info'));
         } catch (\Exception $e) {
-
-            $person = DB::table('user as u')
-                ->select(
-                    'p.person_name as name',
-                    'u.user_id'
-                )
+            $user_info = DB::table('user as u')->select(
+                'p.person_name',
+                'p.person_surname',
+                'u.user_id',
+            )
                 ->join('person as p', 'u.person_id', '=', 'p.person_id')
                 ->where('u.user_id', $id)->first();
-            // foreach($person as $person){
-            //     echo ($person);
-            // }
-            // exit();
             return view('layout.role_table', compact('person'));
         }
     }
@@ -90,6 +86,7 @@ class UserController extends Controller
         $user_id = request('user_id');
         $user_info = DB::table('user as u')->select(
             'p.person_name',
+            'u.user_id as user_id'
         )
             ->join('person as p', 'u.person_id', '=', 'p.person_id')
             ->where('u.user_id', $user_id)->first();
@@ -101,8 +98,31 @@ class UserController extends Controller
         // exit();
         return view('layout.add_role', compact('user_info', 'rolelist'));
     }
-    public function add_role()
+    public function add_role(Request $request)
     {
+        $record = $request->input('role');
+        $user_id = $request->input('user_id');
+        $record_lenght = count($record);
+
+        for ($index = 0; $index < $record_lenght; $index++) {
+            if (isset($record[$index])) {
+                $row = new User_Role();
+                $row->user_id = $user_id;
+                $row->role_id = $request->input("role.{$index}");
+                $row->state = '1';
+                // print_r('**fila: ');
+                // print_r(' *usuario: ');
+                // print_r($row->user_id);
+                // print_r(' *Role: ');
+                // print_r($row->role_id);
+                // print_r($record);
+                $row->save();
+            }
+        }
+        // exit();
+        return redirect()->intended('user');
+        // $getdata = $this->get_roles($user_id);
+        // return view($getdata);
     }
     //endsection en proceso
 
