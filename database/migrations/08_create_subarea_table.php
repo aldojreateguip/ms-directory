@@ -17,8 +17,9 @@ return new class extends Migration
             $table->increments('subarea_id');
             $table->unsignedInteger('area_id');
             $table->string('subarea_description', 250)->unique();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('area_id')->references('area_id')->on('area');
-            $table->timestamps();
         });
     }
 

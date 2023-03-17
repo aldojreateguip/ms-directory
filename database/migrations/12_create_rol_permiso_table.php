@@ -17,9 +17,10 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('role_id');
             $table->unsignedInteger('permission_id');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('role_id')->references('role_id')->on('role');
             $table->foreign('permission_id')->references('permission_id')->on('permission');
-            $table->timestamps();
         });
     }
 
