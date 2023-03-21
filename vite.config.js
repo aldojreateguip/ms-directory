@@ -29,8 +29,7 @@ export default defineConfig({
             "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
             "~bootstrap-icons": path.resolve(__dirname,"node_modules/bootstrap-icons"),
             $: "jQuery",
-            "~admin-lte":path.resolve(__dirname, "node_modules/admin-lte"),
-            "~fa":path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/scss"),
+            "~admin-lte":path.resolve(__dirname, "node_modules/admin-lte")
         },
     },
 });
