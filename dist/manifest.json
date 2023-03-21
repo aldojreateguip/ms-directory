@@ -1,0 +1,80 @@
+{
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-2ef6fdde.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-f4617423.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-12dea17b.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-7ba24c41.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-67a880b4.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-e2c5cf54.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons-c6569d46.woff",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff"
+  },
+  "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons-966620f9.woff2",
+    "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
+  },
+  "public/assets/logo-iiap.png": {
+    "file": "assets/logo-iiap-bac50a2c.png",
+    "src": "public/assets/logo-iiap.png"
+  },
+  "resources/css/login_assets/login_background.jpg": {
+    "file": "assets/login_background-e43d8b5e.jpg",
+    "src": "resources/css/login_assets/login_background.jpg"
+  },
+  "resources/css/login_styles.css": {
+    "file": "assets/login_styles-750b6c57.css",
+    "isEntry": true,
+    "src": "resources/css/login_styles.css"
+  },
+  "resources/css/main_background.css": {
+    "file": "assets/main_background-59ff183e.css",
+    "isEntry": true,
+    "src": "resources/css/main_background.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-4dcb621b.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/bootstrap-icons-966620f9.woff2",
+      "assets/bootstrap-icons-c6569d46.woff",
+      "assets/logo-iiap-bac50a2c.png",
+      "assets/fa-brands-400-f4617423.woff2",
+      "assets/fa-brands-400-2ef6fdde.ttf",
+      "assets/fa-regular-400-7ba24c41.woff2",
+      "assets/fa-regular-400-12dea17b.ttf",
+      "assets/fa-solid-900-e2c5cf54.woff2",
+      "assets/fa-solid-900-67a880b4.ttf"
+    ],
+    "css": [
+      "assets/app-4dcb621b.css"
+    ],
+    "file": "assets/app-8b06cbc4.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/forms.js": {
+    "file": "assets/forms-9eae1a43.js",
+    "isEntry": true,
+    "src": "resources/js/forms.js"
+  }
+}
