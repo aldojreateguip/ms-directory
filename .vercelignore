@@ -1,9 +1,12 @@
+/vendor
+/public/assets/
+/tests
+/node_modules
+/resources/baks
 /node_modules
 /public/build
 /public/hot
-/public/storage
-/storage/*.key
-/vendor
+/storage
 .env
 .env.backup
 .env.production
@@ -17,3 +20,5 @@ yarn-error.log
 /.idea
 /.vscode
 .vercel
+.gitignore
+README.md
