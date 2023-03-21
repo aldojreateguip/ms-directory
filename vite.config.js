@@ -4,16 +4,12 @@ import laravel from "laravel-vite-plugin";
 import path from "path";
 import { config } from "process";
 
-const { defineConfig } = require('vite');
-const { terser } = require('rollup-plugin-terser');
-
 export default defineConfig({
     node: 'production',
     build: {
         outDir: 'dist',
     },
     plugins: [
-        tester(),
         laravel({
             input: [
                 //
