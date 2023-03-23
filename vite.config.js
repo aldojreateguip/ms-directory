@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import path from "path";
@@ -7,9 +6,16 @@ import { config } from "process";
 export default defineConfig({
     node: 'production',
     build: {
-        outDir: 'dist',
+        manifest: true,
+        outDir: 'public/dist',
     },
     plugins: [
+        php({
+            root: './public',
+            base: '/',
+            bin: 'php',
+            debug: true
+          }),
         laravel({
             input: [
                 //
