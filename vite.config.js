@@ -4,18 +4,7 @@ import path from "path";
 import { config } from "process";
 
 export default defineConfig({
-    node: 'production',
-    build: {
-        manifest: true,
-        outDir: 'public/dist',
-    },
     plugins: [
-        php({
-            root: './public',
-            base: '/',
-            bin: 'php',
-            debug: true
-          }),
         laravel({
             input: [
                 //
