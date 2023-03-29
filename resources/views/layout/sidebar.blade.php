@@ -18,7 +18,7 @@
                             @auth
                             {{ Auth::user()->email }}
                             @endauth
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="right fa-solid fa-chevron-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -30,7 +30,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{url('logout')}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="bi bi-box-arrow-left user_menu_btn"></i>
+                                <i class="fa-solid fa-right-from-bracket"></i>
                                 <p>Logout</p>
                             </a>
                             <form action="{{url('logout')}}" method="post" id="logout-form" style="display: none;">
@@ -48,26 +48,26 @@
                 <li class="nav-header">TABLES</li>
                 <li class="nav-item">
                     <a href="ubigeo" class="nav-link">
-                        <i class="fa-sharp fa-solid fa-earth-americas"></i>
+                        <i class="bi bi-globe-americas"></i>
                         <p>Ubigeo</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link">
-                        <i class="bi bi-asterisk"></i>
-                        <p>Institucional<i class="right fas fa-angle-left"></i></p>
+                        <i class="fa-solid fa-building-columns"></i>
+                        <p>Institucional<i class="right fa-solid fa-chevron-left"></i></p>
                     </a>
 
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="institution" class="nav-link">
-                                <i class="fa-regular fa-building"></i>
+                                <i class="fa-solid fa-building"></i>
                                 <p>Institución</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="person" class="nav-link">
-                                <i class="fa-solid fa-person"></i>
+                                <i class="fa-solid fa-user"></i>
                                 <p>Persona</p>
                             </a>
                         </li>
@@ -81,25 +81,22 @@
                 </li>
                 <li class="nav-item">
                     <a href="user" class="nav-link">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-users"></i>
                         <p>Usuario</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="user" class="nav-link">
-                        <!-- <i class="fa-solid fa-user"></i> -->
-                        <p>Roles</p>
+                    <a href="roles_permisos" class="nav-link">
+                        <p>Roles y permisos</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="user" class="nav-link">
-                        <!-- <i class="fa-solid fa-user"></i> -->
+                <!-- <li class="nav-item">
+                    <a href="permiso" class="nav-link">
                         <p>Permisos</p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                    <a href="user" class="nav-link">
-                        <!-- <i class="fa-solid fa-user"></i> -->
+                    <a href="subs" class="nav-link">
                         <p>Subscripciones</p>
                     </a>
                 </li>

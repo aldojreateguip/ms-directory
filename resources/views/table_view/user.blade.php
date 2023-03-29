@@ -347,35 +347,4 @@
         });
     });
 </script>
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.sendRoles', function(e) {
-            e.preventDefault();
-            
-            var formData = $('#aRoles').serialize();
-            console.log(formData);
-            // $.ajax({
-            //     type: 'POST',
-            //     url: $(this).attr('action'),
-            //     data: formData,
-            //     dataType: 'json',
-            //     success: function(response) {
-            //         $("#role_user").html(response);
-            //         Swal.fire({
-            //             title: '¡Enviado!',
-            //             text: response.message,
-            //             icon: 'success'
-            //         });
-            //     },
-            //     error: function(xhr, textStatus, error) {
-            //         Swal.fire({
-            //             title: '¡Error!',
-            //             text: 'Error al guardar los cambios',
-            //             icon: 'error'
-            //         });
-            //     }
-            // });
-        });
-    })
-</script>
 @endsection

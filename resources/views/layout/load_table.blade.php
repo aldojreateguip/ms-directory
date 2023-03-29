@@ -1,4 +1,4 @@
-@extends('admin_view.main')
+@extends('user_view.main')
 
 @section('content')
 @parent

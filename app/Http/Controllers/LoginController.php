@@ -16,20 +16,20 @@ class LoginController extends Controller
 {
     public function admin()
     {
-        if (!Auth::user()) {
-            return view('home');
-        } else {
-            $user_id = Auth::user()->user_id;
-            $user_info = DB::table('user as u')->select(
-                'p.person_name',
-                'p.person_surname'
-            )
-                ->join('person as p', 'u.person_id', '=', 'p.person_id')
-                ->where('u.user_id', '=', $user_id)->first();
-            // echo ($user_data);
-            // exit();
-            return view('admin_view.main')->with('user_info', $user_info);
-        }
+        // if (!Auth::user()) {
+        //     return redirect()->intended('/');
+        // } else {
+        //     $user_id = Auth::user()->user_id;
+        //     $user_info = DB::table('user as u')->select(
+        //         'p.person_name',
+        //         'p.person_surname'
+        //     )
+        //         ->join('person as p', 'u.person_id', '=', 'p.person_id')
+        //         ->where('u.user_id', '=', $user_id)->first();
+        //     // echo ($user_data);
+        //     // exit();
+        //     return view('admin_view.main')->with('user_info', $user_info);
+        // }
     }
     public function show()
     {
@@ -37,7 +37,7 @@ class LoginController extends Controller
         if (!$user_auth) {
             return view('login_view.login');
         } else {
-            return redirect()->intended('admin');
+            return redirect()->intended('mainboard');
         }
     }
 
@@ -52,7 +52,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('admin');
+            return redirect()->intended('mainboard');
         }
 
         return back()->withErrors([

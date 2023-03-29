@@ -357,10 +357,19 @@ input {
     font-size: 20px !important;
     border: none !important;
 }
-.close_btn:hover{
+.close_btn:hover {
     color: red;
 }
-.center-check{
+.center-check {
     display: flex;
     justify-content: center;
+}
+
+.toggle_g {
+    font-size: 1.5rem !important;
+}
+.home_s {
+    font-size: 1.3rem !important;
+    margin: 0 0 !important;
+    padding: 0.05rem 0 !important;
 }

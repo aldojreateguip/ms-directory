@@ -13,9 +13,8 @@ class HomeController extends Controller
         if(!$user_auth)
         {
             return view('home');
-        }
-        else{
-            return redirect()->intended('admin');
+        }else{
+            return redirect()->intended('mainboard');
         }
     }
 }
