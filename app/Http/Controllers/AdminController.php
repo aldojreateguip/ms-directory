@@ -10,8 +10,11 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        if (!Auth::user()) {
-            return view('home');
+        $user_auth = Auth::user();
+        if (!$user_auth) {
+            return redirect()->intended('/');
+        }else{
+            return view('user_view.main');
         }
     }
 }

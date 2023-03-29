@@ -65,14 +65,14 @@ Route::delete('delete-institution_person', [Institution_PersonController::class,
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 //Login
 Route::get('login', [LoginController::class, 'show'])->name('login');
 // Route::get('checklogin', [LoginController::class, 'index']);
 // Route::post('dashboard', [LoginController::class, 'authenticate'])->middleware('auth')->name('authenticate');
 Route::post('dashboard', [LoginController::class, 'authenticate'])->name('authenticate');
 //postlogin
-Route::get('admin', [LoginController::class, 'admin'])->name('admin');
+Route::get('mainboard', [AdminController::class, '__construct'])->name('mainboard');
+// Route::get('admin', [LoginController::class, 'admin'])->name('admin');
 
 
 //register

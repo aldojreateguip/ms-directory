@@ -19,6 +19,6 @@ class LogoutController extends Controller
         $request->session()->flush();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->intended('/');
     }
 }
