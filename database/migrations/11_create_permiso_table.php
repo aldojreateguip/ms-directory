@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('permission_id');
             $table->string('permission_key', 20)->unique();
             $table->string('permission_decription', 250)->unique();
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('discipline_id');
             $table->unsignedInteger('subarea_id');
             $table->string('discipline', 250)->unique();
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('subarea_id')->references('subarea_id')->on('subarea');

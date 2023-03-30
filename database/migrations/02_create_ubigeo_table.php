@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('ubigeo_country', 50);
             $table->string('ubigeo_department', 50);
             $table->string('ubigeo_municipality', 50);
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('ubigeo_created_at')->useCurrent();
             $table->timestamp('ubigeo_updated_at')->useCurrent()->useCurrentOnUpdate();
         });
