@@ -11,6 +11,9 @@ use App\Http\Controllers\Institution_PersonController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleContorller;
+use App\Http\Controllers\RoleController;
 use Faker\Guesser\Name;
 
 /*
@@ -48,10 +51,10 @@ Route::post('add-user', [UserController::class, 'store']);
 Route::get('edit-user/{id}', [UserController::class, 'edit']);
 Route::put('update-user', [UserController::class, 'update']);
 Route::delete('delete-user/{id}', [UserController::class, 'delete']);
-Route::get('user/get-roles/{id}', [UserController::class, 'get_roles'])->name('getroles');
-Route::put('user/change_role/{id}', [UserController::class, 'change']);
-Route::get('user/show_add_role', [UserController::class, 'show_add_role']);
-Route::post('user/add_role', [UserController::class, 'add_role']);
+Route::get('user/get-roles/{id}', [RoleController::class, 'get_roles'])->name('getroles');
+Route::put('user/change_role/{id}', [RoleController::class, 'change']);
+Route::get('user/show_add_role', [RoleController::class, 'show_add_role']);
+Route::post('user/add_role', [RoleController::class, 'add_role']);
 //Person
 Route::get('institution_person', [Institution_PersonController::class, 'index']);
 Route::post('add-institution_person', [Institution_PersonController::class, 'store']);
@@ -71,7 +74,7 @@ Route::get('login', [LoginController::class, 'show'])->name('login');
 // Route::post('dashboard', [LoginController::class, 'authenticate'])->middleware('auth')->name('authenticate');
 Route::post('dashboard', [LoginController::class, 'authenticate'])->name('authenticate');
 //postlogin
-Route::get('mainboard', [AdminController::class, '__construct'])->name('mainboard');
+Route::get('mainboard', [PermissionController::class, '__construct'])->name('mainboard');
 // Route::get('admin', [LoginController::class, 'admin'])->name('admin');
 
 
