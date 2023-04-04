@@ -1,7 +1,7 @@
 <section class="content-header">
     <div class="container-fluid">
-        <h1>{{__('Record Data')}}
-            <button type="button" class="btn-primary btn-sm addbtn" id="addbtn" data-bs-toggle="collapse" data-bs-target="#add_record_box" aria-controls="add_record_box" aria-expanded="false">
+        <h1>{{__('Datos del registro')}}
+            <button type="button" class="btn-info btn-sm addbtn" id="addbtn" data-bs-toggle="collapse" data-bs-target="#add_record_box" aria-controls="add_record_box" aria-expanded="false">
                 <i class="fa-solid fa-square-plus"></i>
                 <span>Nuevo Registro</span>
             </button>

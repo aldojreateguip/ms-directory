@@ -12,6 +12,8 @@ class Role extends Model
     protected $table = 'role';
     protected $guarded = [
         'role_id',
+        'role_state',
+        'record_state',
         'created_at',
         'updated_at',
     ];

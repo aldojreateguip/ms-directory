@@ -15,12 +15,12 @@ function alphaonlyinput(event) {
     return pattern.test(value);
 }
 
-$("#acountry").bind("keypress", alphaonlyinput);
-$("#adepartment").bind("keypress", alphaonlyinput);
-$("#amunicipality").bind("keypress", alphaonlyinput);
-$("#ucountry").bind("keypress", alphaonlyinput);
-$("#udepartment").bind("keypress", alphaonlyinput);
-$("#umunicipality").bind("keypress", alphaonlyinput);
+$("#acountry").on("keypress", alphaonlyinput);
+$("#adepartment").on("keypress", alphaonlyinput);
+$("#amunicipality").on("keypress", alphaonlyinput);
+$("#ucountry").on("keypress", alphaonlyinput);
+$("#udepartment").on("keypress", alphaonlyinput);
+$("#umunicipality").on("keypress", alphaonlyinput);
 
 var apasswordinput = document.getElementById("apassword");
 apasswordinput.setAttribute("minlength", "8");

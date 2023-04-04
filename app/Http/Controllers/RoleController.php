@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User_Role;
 use Illuminate\Http\Request;
@@ -9,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
+    public function index()
+    {
+        $roles = Role::all();
+        $permission = Permission::all();
+        return view('table_view.role', compact('roles', 'permission'));
+    }
     public function get_roles($id)
     {
         try {
@@ -83,7 +90,7 @@ class RoleController extends Controller
             )
                 ->join('person as p', 'u.person_id', '=', 'p.person_id')
                 ->where('u.user_id', $user_id)->first();
-                
+
             $rolelist = Role::whereNotIn('role_id', function ($query) {
                 $query->select('role_id')->from('user_role')->where('user_id', request('user_id'));
             })->get();
@@ -125,9 +132,9 @@ class RoleController extends Controller
             }
         }
         // exit();
-        $showdata = $this->get_roles($user_id);
-        return response($showdata);
+        // $showdata = $this->get_roles($user_id);
+        // return response($showdata);
         // $getdata = $this->get_roles($user_id);
-        // return view($getdata);
+        return redirect()->back()->with('status', 'success');
     }
 }

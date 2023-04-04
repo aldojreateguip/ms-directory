@@ -62,9 +62,8 @@ Route::get('edit-institution_person/{id}', [Institution_PersonController::class,
 Route::put('update-institution_person', [Institution_PersonController::class, 'update']);
 Route::delete('delete-institution_person', [Institution_PersonController::class, 'destroy']);
 
-
-// Route::group(['middleware' => ['guest']], function () {
-// });
+//Role
+Route::get('role', [RoleController::class, 'index'])->name('role');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

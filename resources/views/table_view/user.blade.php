@@ -71,6 +71,16 @@
         </div>
     </form>
 </div>
+
+@if (session('status') == 'success')
+<script>
+    Swal.fire(
+        'Éxito',
+        'Se agregó el rol correctamente.',
+        'success'
+    )
+</script>
+@endif
 @endsection
 
 
@@ -128,12 +138,6 @@
 </div>
 
 @section('js')
-<script>
-    $(document).ready(function() {
-        var records = document.getElementsByName('');
-    });
-</script>
-
 <script>
     //init dataTable
     $(document).ready(function() {
