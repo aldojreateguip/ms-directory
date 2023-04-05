@@ -64,6 +64,7 @@ Route::delete('delete-institution_person', [Institution_PersonController::class,
 
 //Role
 Route::get('role', [RoleController::class, 'index'])->name('role');
+Route::get('create-role', [RoleContorller::class, 'create'])->name('newrole');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

@@ -8,7 +8,7 @@
 
 @section('forms')
 <div id="add_record_box" class="collapse">
-    <form id="aform" action="{{url ('add-ubigeo')}}" class="needs-validation" novalidate method="POST">
+    <form id="aform" action="{{url ('add-role')}}" class="needs-validation" novalidate method="POST">
         @csrf
         <div class="role_form">
             <div class="row__center">
