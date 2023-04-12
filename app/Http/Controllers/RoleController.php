@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\Role_Permission;
 use App\Models\User_Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,7 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::all()->where('record_state', '=', '1');
         $permission = Permission::all();
         return view('table_view.role', compact('roles', 'permission'));
     }
@@ -136,5 +137,56 @@ class RoleController extends Controller
         // return response($showdata);
         // $getdata = $this->get_roles($user_id);
         return redirect()->back()->with('status', 'success');
+    }
+    public function del_role($id)
+    {
+        $user_role = DB::table('user_role')->where('user_id', $id)->get();
+        foreach ($user_role as $role) {
+            DB::table('user_role')->where('id', $role->id)->delete();
+        }
+        $data = Role::find($id);
+        $data->record_state = 0;
+        $data->update();
+        return response()->json(['status', 'success']);
+    }
+
+    public function create(Request $request){
+        $request->validate([
+            'arole' => 'required',
+            'check' => 'required',
+        ]);
+        $newrole = $request->input('arole');
+        $permissions = $request->input('check');
+        $permission_lenght = count($permissions);
+
+        $data = DB::table('role')->where('role_description', $newrole)->first();
+        if($data){
+            if($permission_lenght != 0){
+                for ($index = 0; $index < $permission_lenght; $index++) {
+                    if (isset($permissions[$index])) {
+                        $role_permission_data = new Role_Permission();
+                        $role_permission_data->role_id = $data->role_id;
+                        $role_permission_data->permission_id = $request->input("check.{$index}");
+                        $role_permission_data->save();
+                    }
+                }
+            }
+        }else{
+            $role_data = new Role();
+            $role_data->role_description = $newrole;
+            $role_data->save();
+    
+            if($permission_lenght != 0){
+                for ($index = 0; $index < $permission_lenght; $index++) {
+                    if (isset($permissions[$index])) {
+                        $role_permission_data = new Role_Permission();
+                        $role_permission_data->role_id = $role_data->role_id;
+                        $role_permission_data->permission_id = $request->input("check.{$index}");
+                        $role_permission_data->save();
+                    }
+                }
+            }
+        }
+
     }
 }
