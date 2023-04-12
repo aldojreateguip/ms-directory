@@ -8,7 +8,7 @@
 
 @section('forms')
 <div id="add_record_box" class="collapse">
-    <form id="aform" action="{{url ('add-role')}}" class="needs-validation" novalidate method="POST">
+    <form id="aform" action="{{url ('create-role')}}" class="needs-validation" novalidate method="POST">
         @csrf
         <div class="role_form">
             <div class="row__center">
@@ -33,8 +33,8 @@
                         <label><strong>Lista de permisos</strong></label>
                         <div class="role-item-group">
                             @foreach($permission as $item)
-                            <input value="{{$item->permission_id}}" type="checkbox">
-                            <input type="text" value="{{$item->permission_description}}">
+                            <input value="{{$item->permission_id}}" type="checkbox" name="check[]">
+                            <input type="text" value="{{$item->permission_description}}" name="checkLabel[]">
                             @endforeach
                         </div>
                     </div>
@@ -92,7 +92,7 @@
 <tr>
     <th>{{__('Action')}}</th>
     <th>{{__('Descripción')}}</th>
-    <th>{{__('Permisos')}}</th>
+    <th>{{__('Estado')}}</th>
 </tr>
 @endsection
 
@@ -106,9 +106,22 @@
         <button title="Eliminar" data-toggle="tooltip" data-bs-placement="bottom" value="{{$role->role_id}}" class="action-btn btn-danger deletebtn">
             <i class="bi bi-x-square"></i>
         </button>
+        <button type="button" data-toggle="tooltip" data-bs-placement="bottom" title="Ver Permisos" value="{{$role->role_id}}" class="action-btn btn-info permission" data-bs-toggle="modal" data-bs-target="#role_permissions" aria-controls="role_permissions" aria-expanded="false">
+            <i class="fa-solid fa-list"></i>
+        </button>
     </td>
     <td>{{ $role->role_description}}</td>
-    <td></td>
+    <td>
+        @if( $role->role_state == 1)
+        <button title="Habilitado" type="button" data-toggle="tooltip" data-bs-placement="bottom" class="btn role_button_state ena" data-id="{{$role->role_id}}" data-user="{{$role->role_id}}" data-state="0">
+            <i class="bi bi-toggle-on"></i>
+        </button>
+        @else
+        <button title="Deshabilitado" type="button" data-toggle="tooltip" data-bs-placement="bottom" class="btn role_button_state disa" data-id="{{$role->role_id}}" data-user="{{$role->role_id}}" data-state="1">
+            <i class="bi bi-toggle-on"></i>
+        </button>
+        @endif
+    </td>
 </tr>
 @endforeach
 @endsection
@@ -222,7 +235,7 @@
         $(document).on("click", ".deletebtn", function() {
             Swal.fire({
                 title: "¿Estás seguro?",
-                text: "¡El registro dejará de estar disponible, indefinidamente!",
+                text: "¡El registro dejará de estar disponible!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -252,37 +265,9 @@
     });
 
     $(document).ready(function() {
-        // $(document).on("click", ".create_role_btn", function(elem) {
-        //     elem.preventDefault();
-        //     Swal.fire({
-        //         title: "¿Estás seguro?",
-        //         text: "¡El registro dejará de estar disponible, indefinidamente!",
-        //         icon: "warning",
-        //         showCancelButton: true,
-        //         confirmButtonColor: "#3085d6",
-        //         cancelButtonColor: "#d33",
-        //         confirmButtonText: "Sí, eliminarlo",
-        //         cancelButtonText: "Cancelar",
-        //     }).then((result) => {
-        //         // si el usuario confirma la eliminación, realiza la acción
-        //         if (result.isConfirmed) {
-        //             var id = $(this).data("record-id");
-        //             $.ajax({
-        //                 url: "delete-user/" + id,
-        //                 type: "DELETE",
-        //                 data: {
-        //                     _token: "{{ csrf_token() }}",
-        //                 },
-        //                 success: function(response) {
-        //                     alert("Success");
-        //                 },
-        //                 error: function(xhr) {
-        //                     alert("FAIL");
-        //                 },
-        //             });
-        //         }
-        //     });
-        // });
+        $(document).on("click", ".create_role_btn", function(elem) {
+            // elem.preventDefault();
+        });
     });
 </script>
 <script>
@@ -291,4 +276,5 @@
         add_box.classList.add("show");
     }
 </script>
+@vite(['resources/js/role.js'])
 @endsection
