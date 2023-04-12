@@ -72,7 +72,8 @@ class UserController extends Controller
             DB::table('user_role')->where('id', $role->id)->delete();
         }
         $data = User::find($id);
-        $data->delete();
-        return response()->json(['status', 'welcome']);
+        $data->record_state = "0";
+        $data->update();
+        return response()->json(['status' => 'success']);
     }
 }
