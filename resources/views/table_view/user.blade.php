@@ -81,6 +81,15 @@
     )
 </script>
 @endif
+@if (session('status') == 'deleted')
+<script>
+    Swal.fire(
+        'Éxito',
+        'Se eliminó el usuario correctamente.',
+        'success'
+    )
+</script>
+@endif
 @endsection
 
 
@@ -302,6 +311,7 @@
     //Delete record
     $(document).ready(function() {
         $(document).on("click", ".deletebtn", function() {
+
             Swal.fire({
                 title: "¿Estás seguro?",
                 text: "¡El usuario será deshabilitado indefinidamente!",
@@ -317,12 +327,13 @@
                     var id = $(this).data("record-id");
                     $.ajax({
                         url: "delete-user/" + id,
-                        type: "DELETE",
+                        type: "PUT",
                         data: {
-                            _token: "{{ csrf_token() }}",
+                            _token: "{{ csrf_token() }}"
                         },
                         success: function(response) {
-                            alert("Success");
+                            // swal.close();
+                            // table.ajax.reload();
                         },
                         error: function(xhr) {
                             alert("FAIL");
