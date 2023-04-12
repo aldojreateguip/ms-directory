@@ -50,7 +50,7 @@ Route::get('user', [UserController::class, 'index'])->name('user');
 Route::post('add-user', [UserController::class, 'store']);
 Route::get('edit-user/{id}', [UserController::class, 'edit']);
 Route::put('update-user', [UserController::class, 'update']);
-Route::delete('delete-user/{id}', [UserController::class, 'delete']);
+Route::put('delete-user/{id}', [UserController::class, 'delete']);
 Route::get('user/get-roles/{id}', [RoleController::class, 'get_roles'])->name('getroles');
 Route::put('user/change_role/{id}', [RoleController::class, 'change']);
 Route::get('user/show_add_role', [RoleController::class, 'show_add_role']);
@@ -64,7 +64,8 @@ Route::delete('delete-institution_person', [Institution_PersonController::class,
 
 //Role
 Route::get('role', [RoleController::class, 'index'])->name('role');
-Route::get('create-role', [RoleContorller::class, 'create'])->name('newrole');
+Route::post('create-role', [RoleController::class, 'create'])->name('newrole');
+Route::put('delete-role', [RoleController::class, 'del_role'])->name('delrole');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
