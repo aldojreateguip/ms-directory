@@ -9,9 +9,10 @@
   <title>@yield('title', 'Mainboard')</title>
 
   @yield('css')
+  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  @vite(['resources/js/app.js'])
+  @vite(['resources/js/app.js', 'resources/js/sidebar.js'])
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
@@ -35,30 +36,7 @@
   @yield('modals')
 
   @yield('js')
-  <script>
-    $(function() {
-      var url = window.location;
-      // for single sidebar menu
-      $('ul.nav-sidebar a').filter(function() {
-        return this.href == url;
-      }).addClass('active');
-
-      // for sidebar menu and treeview
-      $('ul.nav-treeview a').filter(function() {
-          return this.href == url;
-        }).parentsUntil(".nav-sidebar > .nav-treeview")
-        .css({
-          'display': 'block'
-        })
-        .addClass('menu-open').prev('a')
-        .addClass('active');
-    });
-  </script>
-  <script>
-    $('#user_roles').on('hidden.bs.modal', function(e) {
-      $('#role_user').html('');
-    });
-  </script>
+  
 </body>
 
 </html>
