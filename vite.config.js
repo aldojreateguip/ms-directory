@@ -11,6 +11,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/forms.js",
                 "resources/js/role.js",
+                "resources/js/sidebar.js",
                 
                 //
                 "resources/css/login_styles.css",
@@ -21,10 +22,8 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            
             "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
             "~bootstrap-icons": path.resolve(__dirname,"node_modules/bootstrap-icons"),
-            $: "jQuery",
             "~admin-lte":path.resolve(__dirname, "node_modules/admin-lte")
         },
     },
