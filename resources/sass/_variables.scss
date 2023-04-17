@@ -397,7 +397,7 @@ input {
     grid-template-columns: 1fr auto;
     grid-template-rows: auto;
     grid-auto-flow: dense;
-    gap: 2px;
+    gap: 10px;
     background: white;
     border: 1px solid #9d9d9d;
     border-radius: 0.5rem;
@@ -430,4 +430,8 @@ input {
 
 .smooth {
     transition: 0.2s ease all !important;
+}
+.item-align-text{
+    vertical-align: middle;
+    margin: 0 0;
 }
