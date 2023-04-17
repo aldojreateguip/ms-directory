@@ -1,6 +1,6 @@
 <section class="content-header">
     <div class="container-fluid">
-        <h1>{{__('Datos del registro')}}
+        <h1>
             <button type="button" class="btn-info btn-sm addbtn" id="addbtn" data-bs-toggle="collapse" data-bs-target="#add_record_box" aria-controls="add_record_box" aria-expanded="false">
                 <i class="fa-solid fa-square-plus"></i>
                 <span>Nuevo Registro</span>
@@ -40,64 +40,21 @@
 @vite(['resources/js/forms.js'])
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="//cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json"></script>
 <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 
 <!--translated tags-->
 <script>
     $(document).ready(function() {
         table = $('#record_data').DataTable({
-            "lengthMenu": [
+            destroy: true,
+            lengthMenu: [
                 [5, 10, 50, -1],
                 [5, 10, 50, "All"]
             ],
             pagingType: 'full_numbers',
             language: {
-                "decimal": ",",
-                "thousands": ".",
-                "info": "Mostrando _START_ al _END_ de _TOTAL_",
-                "infoEmpty": "Mostrando 0 de 0 - total 0",
-                "infoPostFix": "",
-                "infoFiltered": "(total registros: _MAX_)",
-                "loadingRecords": "Cargando...",
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "paginate": {
-                    "first": "Primero",
-                    "last": "Último",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                },
-                "processing": "Procesando...",
-                "search": "Buscar:",
-                "searchPlaceholder": "Término de búsqueda",
-                "zeroRecords": "No se encontraron resultados",
-                "emptyTable": "Ningún dato disponible en esta tabla",
-                "aria": {
-                    "sortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sortDescending": ": Activar para ordenar la columna de manera descendente"
-                },
-                //only works for built-in buttons, not for custom buttons
-                "buttons": {
-                    "create": "Nuevo",
-                    "edit": "Cambiar",
-                    "remove": "Borrar",
-                    "copy": "Copiar",
-                    "csv": "fichero CSV",
-                    "excel": "tabla Excel",
-                    "pdf": "documento PDF",
-                    "print": "Imprimir",
-                    "colvis": "Visibilidad columnas",
-                    "collection": "Colección",
-                    "upload": "Seleccione fichero...."
-                },
-                "select": {
-                    "rows": {
-                        _: '%d filas seleccionadas',
-                        0: 'clic fila para seleccionar',
-                        1: 'una fila seleccionada'
-                    }
-                }
-            }
+                url: "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json",
+            },
         });
     });
 </script>
