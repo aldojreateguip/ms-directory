@@ -1,4 +1,4 @@
-/* Register Success*/
+/* Edit Record Success*/
 $(document).on(function () {
     $(document).on("click", ".editbtn", function () {
         document.getElementById("add_record_box").classList.remove("show");
@@ -15,61 +15,6 @@ $(document).on(function () {
                 $("#umunicipality").val(response.ubigeo.ubigeo_municipality);
             },
         });
-    });
-});
-
-/** Create Function */
-$(function () {
-    $(document).on("click", ".addPermission", function () {
-        var role = document.getElementById("arole");
-        var role_description = role.value;
-
-        if (!role_description) {
-            $.ajax({
-                data: {
-                    _token: "{{ csrf_token() }}",
-                },
-                type: "GET",
-                url: "show-permission",
-                success: function (response) {
-                    console.log(response);
-                    $("#permission_list").html(response);
-                },
-                error: function (response) {
-                    // console.log(response);
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Ha ocurrido un problema con la conexión",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                },
-            });
-        } else {
-            $.ajax({
-                data: {
-                    role_description: role_description,
-                    _token: "{{ csrf_token() }}",
-                },
-                type: "GET",
-                url: "show-permission",
-                success: function (response) {
-                    console.log(response);
-                    $("#permission_list").html(response);
-                },
-                error: function (response) {
-                    // console.log(response);
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Ha ocurrido un problema con la conexión",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                },
-            });
-        }
     });
 });
 
@@ -97,114 +42,197 @@ $(function () {
 $(function () {
     table.destroy();
     table = $("#record_data").DataTable({
+        destroy: true,
         scrollX: true,
         lengthMenu: [
             [5, 10, 50, -1],
             [5, 10, 50, "All"],
         ],
         pagingType: "full_numbers",
-        language: {
-            decimal: ",",
-            thousands: ".",
-            info: "Mostrando _START_ al _END_ de _TOTAL_",
-            infoEmpty: "Mostrando 0 de 0 - total 0",
-            infoPostFix: "",
-            infoFiltered: "(total registros: _MAX_)",
-            loadingRecords: "Cargando...",
-            lengthMenu: "Mostrar _MENU_ registros",
-            paginate: {
-                first: "Primero",
-                last: "Último",
-                next: "Siguiente",
-                previous: "Anterior",
-            },
-            processing: "Procesando...",
-            search: "Buscar:",
-            searchPlaceholder: "Término de búsqueda",
-            zeroRecords: "No se encontraron resultados",
-            emptyTable: "Ningún dato disponible en esta tabla",
-            aria: {
-                sortAscending:
-                    ": Activar para ordenar la columna de manera ascendente",
-                sortDescending:
-                    ": Activar para ordenar la columna de manera descendente",
-            },
-            //only works for built-in buttons, not for custom buttons
-            buttons: {
-                create: "Nuevo",
-                edit: "Cambiar",
-                remove: "Borrar",
-                copy: "Copiar",
-                csv: "fichero CSV",
-                excel: "tabla Excel",
-                pdf: "documento PDF",
-                print: "Imprimir",
-                colvis: "Visibilidad columnas",
-                collection: "Colección",
-                upload: "Seleccione fichero....",
-            },
-            select: {
-                rows: {
-                    _: "%d filas seleccionadas",
-                    0: "clic fila para seleccionar",
-                    1: "una fila seleccionada",
-                },
-            },
-        },
+        language: {"url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"},
     });
 });
 
+/** Tooltips */
 $(function () {
+    Data_Table();
     $('[data-toggle="tooltip"]').tooltip();
     document.addEventListener("click", function () {
         $('[data-toggle="tooltip"]').tooltip("hide");
     });
 });
 
-/* delete fuction */
-var delbtn = document.querySelectorAll(".deletebtn");
-for (var i = 0; i < delbtn.length; i++) {
-    delbtn[i].addEventListener("click", function () {
-        Swal.fire({
-            title: "¿Estás seguro?",
-            text: "¡El registro dejará de estar disponible!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Sí, eliminarlo",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                var id = $(this).data("record-id");
-                $.ajax({
-                    url: "delete-role/" + id,
-                    type: "PUT",
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                    },
-                    success: function (response) {
-                        Swal.fire(
-                            "Éxito",
-                            "El registro se realizó correctamente.",
-                            "success"
-                        );
-                    },
-                    error: function (xhr) {
-                        Swal.fire(
-                            "Error",
-                            "Ocurrió un error al realizar el registro.",
-                            "error"
-                        );
-                    },
-                });
-            }
+/* Delete Record Fuction */
+$(function () {
+    var delbtn = document.querySelectorAll(".deletebtn");
+    for (var i = 0; i < delbtn.length; i++) {
+        delbtn[i].addEventListener("click", function () {
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¡El registro dejará de estar disponible!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminarlo",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var id = $(this).data("record-id");
+                    $.ajaxSetup({
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
+                        },
+                    });
+                    $.ajax({
+                        url: "delete-role/" + id,
+                        type: "PUT",
+                        success: function (response) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Se eliminó correctamente",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            location.reload();
+                        },
+                        error: function (xhr) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "ha ocurrido un error inesperado",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            Data_Table();
+                        },
+                    });
+                }
+            });
         });
-    });
-}
+    }
+});
 
 /** Form Initialization */
 $(function () {
     let add_box = document.querySelector("#add_record_box");
     add_box.classList.add("show");
+});
+
+/** Dis - Ena CreateRole Button  */
+$(function () {
+    var role_description_input = document.getElementById("arole");
+    var show_permission_btn = document.getElementById("createRole");
+    var permission_list = document.getElementById("role_list");
+
+    role_description_input.addEventListener("input", function () {
+        if (role_description_input.value.trim() !== "") {
+            show_permission_btn.disabled = false;
+        } else {
+            show_permission_btn.disabled = true;
+            permission_list.innerHTML = "";
+        }
+    });
+});
+
+/** Create Permission Function */
+$(function () {
+    $(document).on("click", "#createRole", function (event) {
+        event.preventDefault();
+
+        var role = document.getElementById("arole");
+        var role_description = role.value;
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+        /** check */
+        $.ajax({
+            type: "GET",
+            url: "check-role",
+            data: { description: role_description },
+            success: function (response) {
+                if (response.status === "exists") {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "info",
+                        title: "Rol existente, puede agregarle más permisos",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+
+                    $.ajax({
+                        type: "GET",
+                        url: "show-permission",
+                        data: { role_description: role_description },
+                        success: function (response) {
+                            $("#role_list").html(response);
+                        },
+                        error: function (xhr) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "ha ocurrido un error inesperado",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        },
+                    });
+                } else {
+                    /** create */
+                    $.ajax({
+                        type: "POST",
+                        url: "create-role",
+                        data: $("#aform").serialize(),
+                        success: function (response) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Se registró el rol, asigne sus permisos",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            $.ajax({
+                                type: "GET",
+                                url: "show-permission",
+                                data: { role_description: role_description },
+                                success: function (response) {
+                                    $("#role_list").html(response);
+                                },
+                                error: function (xhr) {
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "error",
+                                        title: "ha ocurrido un error inesperado",
+                                        showConfirmButton: false,
+                                        timer: 1500,
+                                    });
+                                },
+                            });
+                        },
+                        error: function (xhr) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "ha ocurrido un error inesperado",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        },
+                    });
+                }
+            },
+            error: function (xhr) {
+                console.log("error");
+            },
+            // beforeSend: function (data) {
+            //     console.log("data: ", data);
+            // },
+        });
+    });
 });

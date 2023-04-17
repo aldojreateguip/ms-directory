@@ -64,8 +64,12 @@ Route::delete('delete-institution_person', [Institution_PersonController::class,
 
 //Role
 Route::get('role', [RoleController::class, 'index'])->name('role');
+// Route::get('roles-data', [RoleController::class, 'roles_data']);
 Route::post('create-role', [RoleController::class, 'create'])->name('newrole');
-Route::put('delete-role', [RoleController::class, 'del_role'])->name('delrole');
+Route::get('check-role', [RoleController::class, 'check_role'])->name('checkrole');
+Route::put('delete-role/{id}', [RoleController::class, 'del_role'])->name('delrole');
+
+Route::get('show-permission', [PermissionController::class, 'show'])->name('showpermission');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

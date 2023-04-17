@@ -16,69 +16,28 @@
         <div class="role_form">
             <div class="row__center">
                 <div class="role-box smooth">
+                    <div class="role-item span">
+                        <h1 for="arole">{{__('Agregar Rol')}}</h1>
+                    </div>
                     <div class="role-item smooth">
-                        <label for="arole">{{__('Descripción del rol')}}</label>
-                        <input type="text" name="arole" id="arole" class="form-control" autocomplete="off" required>
+                        <input type="text" name="arole" id="arole" class="form-control" autocomplete="off" placeholder="Nombre del rol" required>
                         <div class="invalid-feedback">
                             Porfavor completa este campo
                         </div>
                     </div>
                     <div class="role-item smooth">
-                        <label>{{__('Permisos')}}</label>
-                        <div class="col">
-                            <button type="button" data-toggle="tooltip" data-bs-placement="bottom" data-bs-toggle="collapse" data-bs-target="#role-list" aria-controls="add_record_box" aria-expanded="false" title="Agregar permiso" class="btn btn-success addPermission">
-                                <i class="fa-solid fa-file-circle-plus"></i>
-                            </button>
-                        </div>
+                        <button id="createRole" name="createRole" type="submit" data-toggle="tooltip" data-bs-placement="bottom" title="Verificar rol" class="btn btn-success createRole" disabled>
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                        </button>
                     </div>
-                    <div id="role-list" class="role-item span smooth collapse">
-                        <hr>
-                        <label><strong>Lista de permisos</strong></label>
-                        <div id="permission_list" class="role-item-group smooth" >
-                           
-                        </div>
+                    <div id="role_list" name="role_list" class="role-item span smooth">
+
                     </div>
                 </div>
             </div>
             <div class="row__center">
-                <button id="createRole" type="submit" class="btn btn-primary create_role_btn">{{__('save')}}</button>
+                <!-- <button id="createRole" type="submit" class="btn btn-primary create_role_btn">{{__('save')}}</button> -->
             </div>
-        </div>
-    </form>
-</div>
-
-<div id="update_record_box" class="collapse">
-    <form id="uform" action="{{url ('update-ubigeo')}}" class="needs-validation" novalidate method="POST">
-        @csrf
-        @method('PUT')
-        <input type="hidden" name="record_id" id="record_id">
-        <div class="crud-content">
-            <div class="col">
-                <label for="ucountry">{{__('country')}}</label>
-                <input type="text" name="ucountry" id="ucountry" class="form-control" required>
-                <div class="invalid-feedback">
-                    Please complete this field
-                </div>
-            </div>
-
-            <div class="col">
-                <label for="udepartment">{{__('department')}}</label>
-                <input type="text" name="udepartment" id="udepartment" class="form-control" required>
-                <div class="invalid-feedback">
-                    Please complete this field
-                </div>
-            </div>
-
-            <div class="col">
-                <label for="umunicipality">{{__('municipality')}}</label>
-                <input type="text" name="umunicipality" id="umunicipality" class="form-control" required>
-                <div class="invalid-feedback">
-                    Please complete this field
-                </div>
-            </div>
-        </div>
-        <div class="row-md" style="display: flex; justify-content: center;">
-            <button type="submit" value="submit" class="btn btn-success" style="width: 20rem;">{{__('update')}}</button>
         </div>
     </form>
 </div>
