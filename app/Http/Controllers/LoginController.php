@@ -14,49 +14,36 @@ use Symfony\Component\Console\Input\Input;
 
 class LoginController extends Controller
 {
-    public function admin()
-    {
-        // if (!Auth::user()) {
-        //     return redirect()->intended('/');
-        // } else {
-        //     $user_id = Auth::user()->user_id;
-        //     $user_info = DB::table('user as u')->select(
-        //         'p.person_name',
-        //         'p.person_surname'
-        //     )
-        //         ->join('person as p', 'u.person_id', '=', 'p.person_id')
-        //         ->where('u.user_id', '=', $user_id)->first();
-        //     // echo ($user_data);
-        //     // exit();
-        //     return view('admin_view.main')->with('user_info', $user_info);
-        // }
-    }
     public function show()
     {
         $user_auth = Auth::user();
         if (!$user_auth) {
             return view('login_view.login');
         } else {
-            return redirect()->intended('mainboard');
+            return redirect()->back();
         }
     }
 
     public function authenticate(Request $request)
     {
-
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
+        if (Auth::check()) {
+            
             return redirect()->intended('mainboard');
-        }
+        } else {
+            $credentials = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+
+                return redirect()->intended('mainboard');
+            }
+
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
+        }
     }
 }
