@@ -12,8 +12,7 @@ export default defineConfig({
                 "resources/js/forms.js",
                 "resources/js/role.js",
                 "resources/js/sidebar.js",
-                
-                //
+                // "DataTables/datatables.min.js",
                 "resources/css/login_styles.css",
                 "resources/css/main_background.css",
             ],
@@ -24,7 +23,8 @@ export default defineConfig({
         alias: {
             "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
             "~bootstrap-icons": path.resolve(__dirname,"node_modules/bootstrap-icons"),
-            "~admin-lte":path.resolve(__dirname, "node_modules/admin-lte")
+            "~admin-lte": path.resolve(__dirname, "node_modules/admin-lte"),
+            'yajra-laravel-datatables-oracle': path.resolve(__dirname, 'vendor/yajra/laravel-datatables-oracle/src'),
         },
     },
 });

@@ -132,12 +132,8 @@
     </td>
 </tr>
 @endforeach
-
-
-
 @endsection
 
-@yield('filldata')
 <div class="modal fade" id="user_roles" tabindex="-1" role="dialog" aria-labelledby="userRolesLabel" aria-hidden="false">
     <div class="modal-dialog">
         <div class="modal-content" id="role_user">
@@ -181,62 +177,6 @@
             });
         })();
 
-        table.destroy();
-
-        table = $("#record_data").DataTable({
-            scrollX: true,
-            lengthMenu: [
-                [5, 10, 50, -1],
-                [5, 10, 50, "All"],
-            ],
-            pagingType: "full_numbers",
-            language: {
-                decimal: ",",
-                thousands: ".",
-                info: "Mostrando _START_ al _END_ de _TOTAL_",
-                infoEmpty: "Mostrando 0 de 0 - total 0",
-                infoPostFix: "",
-                infoFiltered: "(total registros: _MAX_)",
-                loadingRecords: "Cargando...",
-                lengthMenu: "Mostrar _MENU_ registros",
-                paginate: {
-                    first: "Primero",
-                    last: "Último",
-                    next: "Siguiente",
-                    previous: "Anterior",
-                },
-                processing: "Procesando...",
-                search: "Buscar:",
-                searchPlaceholder: "Término de búsqueda",
-                zeroRecords: "No se encontraron resultados",
-                emptyTable: "Ningún dato disponible en esta tabla",
-                aria: {
-                    sortAscending: ": Activar para ordenar la columna de manera ascendente",
-                    sortDescending: ": Activar para ordenar la columna de manera descendente",
-                },
-                //only works for built-in buttons, not for custom buttons
-                buttons: {
-                    create: "Nuevo",
-                    edit: "Cambiar",
-                    remove: "Borrar",
-                    copy: "Copiar",
-                    csv: "fichero CSV",
-                    excel: "tabla Excel",
-                    pdf: "documento PDF",
-                    print: "Imprimir",
-                    colvis: "Visibilidad columnas",
-                    collection: "Colección",
-                    upload: "Seleccione fichero....",
-                },
-                select: {
-                    rows: {
-                        _: "%d filas seleccionadas",
-                        0: "clic fila para seleccionar",
-                        1: "una fila seleccionada",
-                    },
-                },
-            },
-        });
     });
 
     //Update record
@@ -290,7 +230,7 @@
                     _token: "{{ csrf_token() }}",
                 },
                 type: "PUT",
-                url: "user/change_role/" + ur_id,
+                url: "user/change_role_state/" + ur_id,
                 success: function(response) {
                     $("#role_user").html(response);
                     Swal.fire({

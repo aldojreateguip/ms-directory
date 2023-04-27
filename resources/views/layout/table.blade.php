@@ -1,12 +1,11 @@
 <section class="content-header">
     <div class="container-fluid">
         <h1>
-            <button type="button" class="btn-info btn-sm addbtn" id="addbtn" data-bs-toggle="collapse" data-bs-target="#add_record_box" aria-controls="add_record_box" aria-expanded="false">
+            <button type="button" class="btn-info btn-sm addbtn" name="addbtn" id="addbtn">
                 <i class="fa-solid fa-square-plus"></i>
                 <span>Nuevo Registro</span>
             </button>
         </h1>
-        <hr>
         @yield('forms')
         <hr>
         @yield('table_title')
@@ -22,10 +21,9 @@
                             <div class="col-sm-12">
                                 <table id="record_data" class="hover display stripe order-column compact">
                                     <thead class="bg-primary text-white">
-                                        @yield('head_data')
                                     </thead>
-                                    <tbody>
-                                        @yield('row_data')
+                                    <tbody id="row_data">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -40,12 +38,41 @@
 @vite(['resources/js/forms.js'])
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
 <!--translated tags-->
-<script>
+<!-- <script>
     $(document).ready(function() {
         table = $('#record_data').DataTable({
+            serverSide: true,
+            ajax: "{{url('role/datatable/data')}}",
+            columns: [
+                {
+                    title: 'column 1',
+                    render: function(data, type, full, meta) {
+                        if (full.record_state === 1) {
+                            return "<button title='Actualizar' data-toggle='tooltip' data-bs-placement='bottom' data-record-id='"+full.role_id+"' class='action-btn btn-success editbtn'><i class='bi bi-pencil-square'></i></button>" +
+                                " <button title='Eliminar' class='action-btn btn-danger deletebtn'><i class='bi bi-x-square'></i></button>" +
+                                " <button title='Ver Permisos' class='action-btn btn-info showpermission'><i class='fa-solid fa-list'></i></button>"
+                        } else {
+
+                            return '<button disabled class="btn btn-secondary">Eliminado</button>';
+
+                        }
+                    }
+                },
+                {
+                    data: 'record_state', title: 'column 2'
+                },
+                {
+                    data: 'role_description', title: 'column 3'
+                },
+
+                {
+                    data: 'role_state', title: 'column 4'
+                }
+
+            ],
             destroy: true,
             lengthMenu: [
                 [5, 10, 50, -1],
@@ -57,16 +84,4 @@
             },
         });
     });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.addbtn', function() {
-            document.getElementById('update_record_box').classList.remove("show");
-            document.getElementById('aform').classList.remove("was-validated");
-            document.getElementById('uform').classList.remove("was-validated");
-            document.getElementById('aform').reset();
-            document.getElementById('uform').reset();
-        });
-    });
-</script>
+</script> -->

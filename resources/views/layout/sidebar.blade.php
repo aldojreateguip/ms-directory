@@ -99,3 +99,5 @@
         </div>
     </div>
 </aside>
+
+@vite(['resources/js/sidebar.js'])

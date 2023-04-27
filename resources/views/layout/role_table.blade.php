@@ -7,9 +7,9 @@
         <h3 class="modal-title">
             {{$user_info->person_name}} : Roles
         </h3>
-        <a href="#" class="btn close_btn" data-bs-dismiss="modal" aria-label="Close" style="font-size: 24px;">
-            <i class="bi bi-x-octagon-fill"></i>
-        </a>
+        <button type="button" title="Cerrar" data-toggle="tooltip" data-bs-placement="bottom" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" style="font-size: 24px;">
+            <i class="bi bi-x-circle"></i>
+        </button>
     </div>
     <div class="modal-body">
         @if($addRoleBtnState == 1)
@@ -17,7 +17,7 @@
             <i class="bi bi-plus-square-fill"></i> Añadir roles
         </button>
         @else
-        <button type="button" class="btn-secondary btn-sm addrol" disabled data-user="{{$user_info->user_id}}" data-toggle="tooltip" data-bs-placement="right">
+        <button type="button" class="btn-secondary btn-sm addrol" data-user="{{$user_info->user_id}}" data-toggle="tooltip" data-bs-placement="right" disabled>
             <i class="bi bi-plus-square-fill"></i> Añadir roles
         </button>
         @endif
@@ -56,3 +56,10 @@
         <button id="btnClose_add_role_view" type="button" class="btn-danger btn-sm float-right" data-bs-dismiss="modal">Cerrar</button>
     </div>
 </div>
+
+<script>
+    $('[data-toggle="tooltip"]').tooltip();
+    document.addEventListener("click", function() {
+        $('[data-toggle="tooltip"]').tooltip("hide");
+    });
+</script>

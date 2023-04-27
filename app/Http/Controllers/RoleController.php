@@ -15,15 +15,10 @@ class RoleController extends Controller
 {
     public function index()
     {
-        $roles = Role::all()->where('record_state', '=', '1');
+        $roles = Role::all();
         $permission = Permission::all();
         return view('table_view.role', compact('roles', 'permission'));
     }
-    // public function roles_data()
-    // {
-    //     $roles = DB::select('role_id, role_description');
-    //     return response()->json(['data' => $roles]);
-    // }
     public function get_roles($id)
     {
         try {
@@ -36,6 +31,7 @@ class RoleController extends Controller
             )
                 ->join('person as p', 'u.person_id', '=', 'p.person_id')
                 ->where('u.user_id', $id)->first();
+
             $fill = DB::table('user_role as ur')->select(
                 'ur.id',
                 'p.person_name',
@@ -65,10 +61,30 @@ class RoleController extends Controller
                 ->join('person as p', 'u.person_id', '=', 'p.person_id')
                 ->where('u.user_id', $id)->first();
             $fill = [];
-            return view('layout.role_table', compact('user_info', 'fill'));
+            $countFill = count($fill);
+            if ($countFill == $countRoles) {
+                $addRoleBtnState = 0;
+            } else {
+                $addRoleBtnState = 1;
+            }
+            return view('layout.role_table', compact('user_info', 'fill', 'addRoleBtnState'));
         }
     }
-    public function change($ur_id)
+    public function get_role_dttable()
+    {
+        return datatables()->query(
+            DB::table('role')
+                ->select('record_state', 'role_description', 'role_state', 'role_id')
+                ->orderBy('role_id', 'asc')
+        )->toJson();
+    }
+    public function get_role_data($id)
+    {
+
+        $data = DB::table('role')->where('role_id', '=', $id)->first();
+        return response()->json(['role_data' => $data]);
+    }
+    public function change_role_user_state($ur_id)
     {
         $user_id = request('user_id');
         $state = request('state');
@@ -79,6 +95,17 @@ class RoleController extends Controller
 
         $getdata = $this->get_roles($user_id);
         return response($getdata);
+    }
+
+    public function change_role_state($role_id)
+    {
+        $role_id = request('role_id');
+        $state = request('state');
+
+        $data = Role::find($role_id);
+        $data->role_state = $state;
+        $data->update();
+        return response()->json(['status' => 'success']);
     }
 
     //start section en proceso
@@ -135,61 +162,20 @@ class RoleController extends Controller
         }
         $data = Role::find($id);
         $data->record_state = 0;
+        $data->role_state = 0;
         $data->update();
         return response()->json(['status', 'success']);
     }
-
-    // public function create(Request $request)
-    // {
-    //     $request->validate([
-    //         'arole' => 'required',
-    //     ]);
-    //     $newrole = $request->input('arole');
-    //     $permissions = $request->input('check');
-    //     if ($permissions) {
-    //         $permission_lenght = count($permissions);
-    //     } else {
-    //         $permission_lenght = 0;
-    //     }
-    //     $role = DB::table('role')->where('role_description', $newrole)->first();
-    //     if (!$role) {
-    //         $role_data = new Role();
-    //         $role_data->role_description = $newrole;
-    //         $role_data->save();
-    //         if ($permission_lenght != 0) {
-    //             for ($index = 0; $index < $permission_lenght; $index++) {
-    //                 if (isset($permissions[$index])) {
-    //                     $role_permission_data = new Role_Permission();
-    //                     $role_permission_data->role_id = $role_data->role_id;
-    //                     $role_permission_data->permission_id = $request->input("check.{$index}");
-    //                     $role_permission_data->save();
-    //                 }
-    //             }
-    //         }
-    //     } else {
-    //         if ($permission_lenght != 0) {
-    //             for ($index = 0; $index < $permission_lenght; $index++) {
-    //                 if (isset($permissions[$index])) {
-    //                     $role_permission_data = new Role_Permission();
-    //                     $role_permission_data->role_id = $role->role_id;
-    //                     $role_permission_data->permission_id = $request->input("check.{$index}");
-    //                     $role_permission_data->save();
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return redirect()->back()->with('status', 'registered');
-    // }
-
     public function create(Request $request)
     {
-        $description = $request->input('arole');
+        $description = $request->input('description');
         $role_data = new Role();
         $role_data->role_description = $description;
         $role_data->save();
-        return response()->json(['status' => 'success']);
-    }
 
+        $this->index();
+        return response()->json(['status' => 'success', 'role_id' => $role_data->role_id]);
+    }
     public function check_role(Request $request)
     {
         $role = $request->input('description');
@@ -198,7 +184,20 @@ class RoleController extends Controller
         if (empty($checked_role)) {
             return response()->json(['status' => 'not_exists']);
         } else {
-            return response()->json(['status' => 'exists']);
+            return response()->json(['status' => 'exists', 'role_id' => $checked_role->role_id]);
         }
+    }
+    public function update_role(Request $request)
+    {
+        $request->validate([
+            'uid' => 'required',
+            'urole' => 'required'
+        ]);
+
+        $id = $request->input('uid');
+        $data = Role::find($id);
+        $data->role_description = $request->input('urole');
+        $data->update();
+        return redirect()->back()->with('status', 'Registro Actualizado Exitosamente.');
     }
 }

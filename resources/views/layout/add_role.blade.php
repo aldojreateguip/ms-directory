@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col">
                     <button id="sendRoles" disabled type="submit" class="btn-secondary btn-sm sendRoles float-right" data-toggle="tooltip" data-bs-placement="right">
-                        <i class="bi bi-plus-square-fill"></i> Guardar
+                        Guardar
                     </button>
                 </div>
                 <div class="col-2">
