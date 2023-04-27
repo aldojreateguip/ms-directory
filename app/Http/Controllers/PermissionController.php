@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Models\Role_Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +45,20 @@ class PermissionController extends Controller
     public function update_permission()
     {
     }
-    public function asign_permission()
+    public function asign_permission(Request $request)
     {
+        $role_id = $request->input('role_id');
+        $permissions = $request->input('permission');
+        $permissions_lenght = count($permissions);
+
+        for ($index = 0; $index < $permissions_lenght; $index++) {
+            if (isset($permissions[$index])) {
+                $row = new Role_Permission();
+                $row->role_id = $role_id;
+                $row->permission_id = $permissions[$index];
+                $row->save();
+            }
+        }
+        return redirect()->back()->with('status', 'permissionRegistered');
     }
 }
