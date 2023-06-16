@@ -4,20 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Institution_Person extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
     public $timestamps = false;
     protected $table = 'institution_person';
     protected $guarded = [
         'id',
-        'inst_pers_created_at'=>'created_at',
-        'inst_pers_updated_at'=>'updated_at'
+        'inst_pers_created_at' => 'created_at',
+        'inst_pers_updated_at' => 'updated_at'
     ];
     protected $primaryKey = 'id';
 
-    protected $filliable = [        
+    protected $filliable = [
         'institution_id',
         'person_id',
         'occupation',

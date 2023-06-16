@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('discipline_id');
             $table->string('subs_description');
             $table->integer('subs_state')->lenght(1)->unsigned();
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('person_id')->references('person_id')->on('person');

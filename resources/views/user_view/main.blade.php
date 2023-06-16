@@ -9,55 +9,36 @@
   <title>@yield('title', 'Mainboard')</title>
 
   @yield('css')
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  @vite(['resources/js/app.js'])
+  @vite(['resources/js/app.js', 'resources/css/preloader.css', 'resources/js/main/main.js'])
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
-  <!-- <div class="wrapper"> -->
-  @include('layout.header')
-
-  @auth
-  @include('layout.sidebar')
-  <div class="content-wrapper">
-    @yield('content')
+  <div class="wrapper">
+    @include('layout.header')
+    @auth
+    @include('layout.sidebar')
+    <div class="content-wrapper">
+      @yield('content')
+    </div>
+    @endauth
+    @guest
+    <div class="main-container">
+      @yield('content')
+    </div>
+    @endguest
   </div>
-  @endauth
-  @guest
-  <div class="main-container">
-    @yield('content')
-  </div>
-  @endguest
-
-
 
   @yield('modals')
 
   @yield('js')
   <script>
-    $(function() {
-      var url = window.location;
-      // for single sidebar menu
-      $('ul.nav-sidebar a').filter(function() {
-        return this.href == url;
-      }).addClass('active');
 
-      // for sidebar menu and treeview
-      $('ul.nav-treeview a').filter(function() {
-          return this.href == url;
-        }).parentsUntil(".nav-sidebar > .nav-treeview")
-        .css({
-          'display': 'block'
-        })
-        .addClass('menu-open').prev('a')
-        .addClass('active');
-    });
-  </script>
-  <script>
-    $('#user_roles').on('hidden.bs.modal', function(e) {
-      $('#role_user').html('');
-    });
   </script>
 </body>
 

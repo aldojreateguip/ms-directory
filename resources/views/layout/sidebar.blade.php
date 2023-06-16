@@ -86,15 +86,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="roles_permisos" class="nav-link">
+                    <a href="role" class="nav-link">
                         <p>Roles y permisos</p>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="permiso" class="nav-link">
-                        <p>Permisos</p>
-                    </a>
-                </li> -->
                 <li class="nav-item">
                     <a href="subs" class="nav-link">
                         <p>Subscripciones</p>
@@ -104,3 +99,5 @@
         </div>
     </div>
 </aside>
+
+@vite(['resources/js/main/sidebar.js'])

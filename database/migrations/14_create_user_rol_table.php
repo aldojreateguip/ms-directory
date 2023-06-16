@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('role_id');
             $table->unsignedInteger('ur_state')->default('1');
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('role_id')->references('role_id')->on('role');

@@ -185,6 +185,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,8 +210,9 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+    'aliases' =>
+    Facade::defaultAliases()->merge([
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];

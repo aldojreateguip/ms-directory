@@ -9,13 +9,9 @@ h5,
 a,
 i,
 span {
-    // font-family: Montserrat-Regular;
     text-decoration: none !important;
 }
-button.action-btn {
-    outline: none;
-    border: none;
-}
+
 // Body
 $body-bg: #f8fafc;
 // Typography
@@ -26,6 +22,8 @@ input {
     border: none;
 }
 .action-btn {
+    outline: none;
+    border: none;
     padding: 0;
     border-radius: 20%;
     height: 25px !important;
@@ -54,7 +52,6 @@ input {
 /*Forms*/
 .forms {
     padding: 10px;
-    // background: rgb(214, 249, 247);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
@@ -298,19 +295,6 @@ input {
     transition: 0.2s ease all;
 }
 
-.crud-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 2px;
-    background: white;
-    border: 1px solid #9d9d9d;
-    border-radius: 0.5rem;
-    padding: 20px 0px;
-    margin: 10px 10px;
-    box-shadow: 0 0 5px rgba(163, 163, 163, 0.4);
-}
-
 .mx-background-top-linear {
     background: linear-gradient(120deg, #239c64 47%, #1f8354 50%) !important;
 }
@@ -334,24 +318,26 @@ input {
     margin-top: 5px !important;
     padding-left: 10px !important;
 }
-.role_buton_state {
+
+.role_button_state {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
     outline: none !important;
     border: none !important;
-    box-shadow: none !important;
-    cursor: none !important;
-    background: white !important;
+    background: transparent !important;
+    height: 30px !important;
+    width: 50px !important;
 }
 .role_button_state.ena {
     color: #119200 !important;
 }
-.role_button_state.disa {
+.role_button_state.disa > i {
     transform: rotate(180deg) !important;
     color: red !important;
 }
-.role_button_state i {
-    font-size: 24px !important;
-    border: none !important;
-    cursor: pointer !important;
+.role_button_state > i {
+    font-size: 24px;
 }
 .user_menu_btn {
     font-size: 20px !important;
@@ -372,4 +358,150 @@ input {
     font-size: 1.3rem !important;
     margin: 0 0 !important;
     padding: 0.05rem 0 !important;
+}
+
+.role_form {
+    display: grid;
+    grid-template-rows: auto;
+    gap: 1.5rem;
+}
+.role_btn {
+    width: 10rem;
+    height: 2rem;
+    justify-content: center;
+    align-content: center;
+}
+
+.row__center {
+    display: flex;
+    justify-content: center;
+}
+.roles_list {
+    grid-template-columns: 1;
+}
+.crud-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    background: white;
+    border: 1px solid #9d9d9d;
+    border-radius: 0.5rem;
+    padding: 20px 0px;
+    margin: 10px 10px;
+    box-shadow: 0 0 5px rgba(163, 163, 163, 0.4);
+}
+.role-box {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto;
+    grid-auto-flow: dense;
+    gap: 10px;
+    background: white;
+    border: 1px solid #9d9d9d;
+    border-radius: 0.5rem;
+    padding: 20px 20px !important;
+    // margin: 0 0 !important;
+    box-shadow: 0 0 5px rgba(163, 163, 163, 0.4);
+}
+.role-item {
+    width: 100%;
+    margin: 0 0;
+}
+.role-item.span.p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.role-item.span {
+    grid-column: span 2;
+}
+
+.role-item-group {
+    background: transparent;
+    width: 100%;
+    margin: 0 0;
+    padding: 0 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 10% 40% 10% 40%;
+    grid-template-rows: auto;
+    grid-auto-flow: dense;
+    gap: 5px;
+}
+
+.smooth {
+    transition: 0.2s ease all !important;
+}
+.item-align-text {
+    vertical-align: middle;
+    margin: 0 0;
+}
+
+.__hidden {
+    background: rgb(252, 150, 150) !important;
+}
+
+.table-title {
+    display: grid;
+    grid-template-columns: 20% 5% auto;
+    gap: 10px;
+}
+
+.switch {
+    margin: auto;
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 18px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 34px;
+    background-color: #2196f3;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #f66060;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(12px);
+    -ms-transform: translateX(12px);
+    transform: translateX(12px);
 }

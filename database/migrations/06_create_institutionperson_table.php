@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('occupation');
             $table->string('institutional_email');
             $table->date('incorporation_date');
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('inst_pers_created_at')->useCurrent();
             $table->timestamp('inst_pers_updated_at')->useCurrent()->useCurrentOnUpdate();
         });

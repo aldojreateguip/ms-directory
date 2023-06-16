@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('person', function (Blueprint $table) {
             $table->increments('person_id');
+            $table->unsignedInteger('ubigeo_id');
             $table->string('person_name', 80);
             $table->string('person_surname', 80);
             $table->string('person_email', 100)->unique();
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->string('person_web_page', 100);
             $table->string('person_profile_picture',255);
             $table->date('person_birthday_date');
-            $table->unsignedInteger('ubigeo_id');
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('person_created_at')->useCurrent();
             $table->timestamp('person_updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('ubigeo_id')->references('ubigeo_id')->on('ubigeo');

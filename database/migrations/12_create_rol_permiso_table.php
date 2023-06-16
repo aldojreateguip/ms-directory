@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('role_permission', function (Blueprint $table) {
-            $table->increments('id');
             $table->unsignedInteger('role_id');
             $table->unsignedInteger('permission_id');
+            $table->unsignedInteger('role_state')->default('1');
+            $table->unsignedInteger('record_state')->default('1');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->foreign('role_id')->references('role_id')->on('role');
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rol_permission');
+        Schema::dropIfExists('role_permission');
     }
 };
