@@ -1,17 +1,111 @@
 /** new record */
 $(function () {
+    /** Dis - Ena CreateRole Button  */
+    var role_description_input = document.getElementById("arole");
+    var show_permission_btn = document.getElementById("createRole");
+    var permission_list = document.getElementById("role_list");
+
+    role_description_input.addEventListener("input", function () {
+        if (role_description_input.value.trim() !== "") {
+            show_permission_btn.disabled = false;
+        } else {
+            show_permission_btn.disabled = true;
+            permission_list.innerHTML = "";
+        }
+    });
+
+    /** Dis - Ena CreateRole Button  */
+    var role_description = document.getElementById("urole");
+    var update_permission = document.getElementById("updateRole");
+
+    role_description.addEventListener("input", function () {
+        if (role_description.value.trim() !== "") {
+            update_permission.disabled = false;
+        } else {
+            update_permission.disabled = true;
+        }
+    });
+
+    /** DataTable */
+    var table = $("#record_data").DataTable({
+        serverSide: true,
+        ajax: {
+            url: "role/datatable/data",
+        },
+        columns: [
+            {
+                title: "Acciones",
+                render: function (data, type, full, meta) {
+                    if (full.record_state === 1) {
+                        return (
+                            "<button title='Actualizar' data-toggle='tooltip' data-bs-placement='bottom' data-record-id='" +
+                            full.role_id +
+                            "' class='action-btn btn-success editbtn'><i class='bi bi-pencil-square'></i></button>" +
+                            " <button title='Eliminar' data-record-id='" +
+                            full.role_id +
+                            "' class='action-btn btn-danger deletebtn'><i class='bi bi-x-square'></i></button>" +
+                            " <button title='Ver Permisos' class='action-btn btn-info showpermission'><i class='fa-solid fa-list'></i></button>"
+                        );
+                    } else {
+                        return '<button disabled class="btn btn-secondary">Eliminado</button>';
+                    }
+                },
+            },
+            { data: "record_state", title: "EstadoFila", visible: false },
+            { data: "role_description", title: "Descripción" },
+            {
+                data: "role_state",
+                title: "Estado",
+                render: function (data, type, full, meta) {
+                    var state;
+                    var btnClass;
+
+                    if (full.role_state === 1) {
+                        state = 0;
+                        btnClass = "ena";
+                    } else {
+                        state = 1;
+                        btnClass = "disa";
+                    }
+                    return (
+                        "<button title='Habilitado' type='button' data-toggle='tooltip' data-bs-placement='bottom' class='btn role_button_state " +
+                        btnClass +
+                        "' data-id='" +
+                        full.role_id +
+                        "' data-state='" +
+                        state +
+                        "'><i class='bi bi-toggle-on'></i></button>"
+                    );
+                },
+            },
+        ],
+        destroy: true,
+        lengthMenu: [
+            [5, 10, 50, -1],
+            [5, 10, 50, "All"],
+        ],
+        pagingType: "full_numbers",
+        language: {
+            url: "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json",
+        },
+    });
+
     function resetShowRecords() {
-        var button = document.getElementById('showDeleted');
+        var button = document.getElementById("showDeleted");
         button.checked = false;
         button.classList.add("ena");
         button.classList.remove("disa");
     }
-    
-    window.onload = function() {
+
+    window.onload = function () {
         resetShowRecords();
+        setTimeout(function () {
+            $("#preloader").fadeOut("slow");
+            console.log("activado");
+        }, 1000);
     };
 
-    $(document).on("click", ".paginate_button", function(){
+    $(document).on("click", ".paginate_button", function () {
         resetShowRecords();
     });
 
@@ -48,9 +142,6 @@ $(function () {
     });
 
     $(document).on("click", ".addbtn", function () {
-        // table.ClearTable();
-        // tabla.Destroy();
-
         if ($("#add_record_box").is(":hidden")) {
             $("#add_record_box").addClass("show");
         }
@@ -145,12 +236,6 @@ $(function () {
         });
     });
 
-    /** Tooltips */
-    $('[data-toggle="tooltip"]').tooltip();
-    document.addEventListener("click", function () {
-        $('[data-toggle="tooltip"]').tooltip("hide");
-    });
-
     /* Delete Record Fuction */
     $(document).on("click", ".deletebtn", function () {
         Swal.fire({
@@ -197,36 +282,6 @@ $(function () {
                 });
             }
         });
-    });
-
-    /** Form Initialization */
-    let add_box = document.querySelector("#add_record_box");
-    add_box.classList.add("show");
-
-    /** Dis - Ena CreateRole Button  */
-    var role_description_input = document.getElementById("arole");
-    var show_permission_btn = document.getElementById("createRole");
-    var permission_list = document.getElementById("role_list");
-
-    role_description_input.addEventListener("input", function () {
-        if (role_description_input.value.trim() !== "") {
-            show_permission_btn.disabled = false;
-        } else {
-            show_permission_btn.disabled = true;
-            permission_list.innerHTML = "";
-        }
-    });
-
-    /** Dis - Ena CreateRole Button  */
-    var role_description = document.getElementById("urole");
-    var update_permission = document.getElementById("updateRole");
-
-    role_description.addEventListener("input", function () {
-        if (role_description.value.trim() !== "") {
-            update_permission.disabled = false;
-        } else {
-            update_permission.disabled = true;
-        }
     });
 
     /** Create Permission Function */
@@ -339,6 +394,37 @@ $(function () {
         });
     });
 
+    /** update role */
+    $(document).on("click", "#updateRole", function (event) {
+        event.preventDefault();
+
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            type: "PUT",
+            url: "role/update",
+            data: $("#uform").serialize(),
+            // data: { description: role_description },
+            success: function (response) {
+                table.draw();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Datos actualizados correctamente",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            },
+            error: function (xhr) {
+                console.log("error");
+            },
+        });
+    });
+
     /** Show Permissions */
     $(document).on("click", ".showpermission", function () {
         var id = $(this).val();
@@ -351,73 +437,6 @@ $(function () {
         });
     });
 
-    /** DataTable */
-    // table.dataTable().Destroy();
-    var table = $("#record_data").DataTable({
-        serverSide: true,
-        ajax: {
-            url: "role/datatable/data",
-        },
-        columns: [
-            {
-                title: "Acciones",
-                render: function (data, type, full, meta) {
-                    if (full.record_state === 1) {
-                        return (
-                            "<button title='Actualizar' data-toggle='tooltip' data-bs-placement='bottom' data-record-id='" +
-                            full.role_id +
-                            "' class='action-btn btn-success editbtn'><i class='bi bi-pencil-square'></i></button>" +
-                            " <button title='Eliminar' data-record-id='" +
-                            full.role_id +
-                            "' class='action-btn btn-danger deletebtn'><i class='bi bi-x-square'></i></button>" +
-                            " <button title='Ver Permisos' class='action-btn btn-info showpermission'><i class='fa-solid fa-list'></i></button>"
-                        );
-                    } else {
-                        return '<button disabled class="btn btn-secondary">Eliminado</button>';
-                    }
-                },
-            },
-            { data: "record_state", title: "EstadoFila", visible: false },
-            { data: "role_description", title: "Descripción" },
-            {
-                data: "role_state",
-                title: "Estado",
-                render: function (data, type, full, meta) {
-                    var state;
-                    var btnClass;
-
-                    if (full.role_state === 1) {
-                        state = 0;
-                        btnClass = "ena";
-                    } else {
-                        state = 1;
-                        btnClass = "disa";
-                    }
-                    return (
-                        "<button title='Habilitado' type='button' data-toggle='tooltip' data-bs-placement='bottom' class='btn role_button_state " +
-                        btnClass +
-                        "' data-id='" +
-                        full.role_id +
-                        "' data-state='" +
-                        state +
-                        "'><i class='bi bi-toggle-on'></i></button>"
-                        // "<button>XXXXX</button>"
-                    );
-                },
-            },
-        ],
-        destroy: true,
-        lengthMenu: [
-            [5, 10, 50, -1],
-            [5, 10, 50, "All"],
-        ],
-        pagingType: "full_numbers",
-        language: {
-            url: "//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json",
-        },
-    });
-
-    // table.column(1).visible(false);
     table.on("draw.dt", function () {
         table.rows().every(function (rowIdx, tableLoop, rowLoop) {
             var data = this.data();
@@ -430,5 +449,11 @@ $(function () {
             }
         });
     });
-    table.draw();
 });
+
+window.onload = function () {
+    setTimeout(function () {
+        $("#preloader").fadeOut("slow");
+        console.log("activado");
+    }, 1000);
+};

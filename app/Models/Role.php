@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Role extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
     public $timestamps = false;
     protected $table = 'role';
     protected $primaryKey = 'role_id';
@@ -20,5 +21,5 @@ class Role extends Model
     ];
     protected $fillable = [
         'role_description',
-    ]; 
+    ];
 }

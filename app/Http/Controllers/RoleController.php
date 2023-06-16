@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Laravel\Ui\Presets\React;
 
+
 class RoleController extends Controller
 {
+    
     public function index()
     {
         $roles = Role::all();
@@ -198,6 +200,6 @@ class RoleController extends Controller
         $data = Role::find($id);
         $data->role_description = $request->input('urole');
         $data->update();
-        return redirect()->back()->with('status', 'Registro Actualizado Exitosamente.');
+        return response()->json(['status', 'success']);
     }
 }

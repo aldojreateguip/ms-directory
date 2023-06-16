@@ -100,4 +100,4 @@
     </div>
 </aside>
 
-@vite(['resources/js/sidebar.js'])
+@vite(['resources/js/main/sidebar.js'])

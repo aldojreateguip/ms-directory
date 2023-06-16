@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 class Person extends Model
 {
-    use HasFactory;
+    use HasFactory, HasRoles;
     public $timestamps = false;
     protected $table = 'person';
     protected $guarded = [
         'person_id',
-        'person_created_at'=>'created_at',
-        'person_updated_at'=>'updated_at'
+        'person_created_at' => 'created_at',
+        'person_updated_at' => 'updated_at'
     ];
     protected $primaryKey = 'person_id';
     protected $fillable = [
@@ -27,5 +28,5 @@ class Person extends Model
         'person_profile_picture',
         'person_birthday_date',
         'ubigeo_id'
-    ]; 
+    ];
 }

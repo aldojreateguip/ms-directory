@@ -2,13 +2,9 @@
 
 @section('title', 'Roles')
 
-@section('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
-@endsection
 
 @section('forms')
-
-
+@include('layout.preloader')
 <div id="add_record_box" class="collapse show">
     <div class="role_form">
         <div class="row__center">
@@ -66,18 +62,11 @@
         </div>
     </form>
 </div>
-@endsection
+@stop
 
 @section('table_title')
-<!-- <h1>Lista Roles <button>visualizar</button></h1> -->
-<div class="table-title">
-    <h1>Lista Roles</h1>
-    <label for="showDeleted" title="Mostar Eliminados" data-toggle="tooltip" data-bs-placement="bottom" class="switch">
-        <input id="showDeleted" type="checkbox" class="check_records ena">
-        <span class="slider"></span>
-    </label>
-</div>
-@endsection
+<h1>Lista Roles</h1>
+@stop
 
 @section('modals')
 <div class="modal fade" id="show_permissions" tabindex="-1" role="dialog" aria-labelledby="userRolesLabel" aria-hidden="false">
@@ -87,7 +76,7 @@
         </div>
     </div>
 </div>
-@endsection
+@stop
 
 @section('js')
 
@@ -114,9 +103,6 @@
     });
 </script>
 @endif
-<script>
-    
-</script>
-@vite(['resources/js/role.js'])
 
-@endsection
+@vite(['resources/js/modules/role.js'])
+@stop

@@ -9,13 +9,13 @@
   <title>@yield('title', 'Mainboard')</title>
 
   @yield('css')
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  @vite(['resources/js/app.js'])
+  @vite(['resources/js/app.js', 'resources/css/preloader.css', 'resources/js/main/main.js'])
 </head>
 
 <body class="sidebar-mini layout-fixed layout-navbar-fixed">
@@ -37,7 +37,9 @@
   @yield('modals')
 
   @yield('js')
+  <script>
 
+  </script>
 </body>
 
 </html>

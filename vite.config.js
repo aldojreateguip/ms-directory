@@ -9,13 +9,14 @@ export default defineConfig({
             input: [
                 //
                 "resources/js/app.js",
-                "resources/js/forms.js",
-                "resources/js/sidebar.js",
+                "resources/js/main/validator.js",
+                "resources/js/main/forms.js",
+                "resources/js/main/main.js",
+                "resources/js/main/sidebar.js",
                 "resources/js/modules/role.js",
                 "resources/js/modules/user.js",
-                "resources/js/modules/main.js",
-                // "DataTables/datatables.min.js",
                 "resources/css/login_styles.css",
+                "resources/css/preloader.css",
                 "resources/css/main_background.css",
             ],
             refresh: true,

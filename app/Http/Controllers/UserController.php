@@ -2,29 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
-use App\Models\Role;
+
 use App\Models\User;
-use App\Models\User_Role;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
-use Symfony\Component\Console\Completion\Output\ZshCompletionOutput;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $data = DB::table('user as u')->select(
-            'p.person_name',
-            'p.person_surname',
-            'u.user_state',
-            'u.user_id',
-        )
-            ->join('person as p', 'u.person_id', '=', 'p.person_id')->get();
+        $data = DB::table('person')->select(
+            'person_id',
+            'person_name',
+            'person_surname',
+        )->orderBy('person_surname', 'asc')
+        ->get();
         return view('table_view.user', compact('data'));
     }
 
@@ -44,7 +37,7 @@ class UserController extends Controller
         $data->save();
         return redirect()->back()->with('status', 'Registro Añadido Exitosamente.');
     }
-    public function edit($id)
+    public function find($id)
     {
         $data = User::find($id);
         return response()->json(['user' => $data]);
@@ -72,7 +65,39 @@ class UserController extends Controller
             DB::table('user_role')->where('id', $role->id)->delete();
         }
         $data = User::find($id);
-        $data->record_state = "0";
+        $data->record_state = 0;
+        $data->user_state = 0;
+        $data->update();
+        return response()->json(['status' => 'success']);
+    }
+    public function reset($id)
+    {
+        $password = DB::table('person as p')
+            ->select('p.person_identity_document as iddoc')
+            ->join('user as u', 'p.person_id', '=', 'u.person_id')
+            ->where('u.user_id', $id)
+            ->first();
+
+        $data = User::find($id);
+        $data->password = Hash::make($password->iddoc);
+        $data->update();
+        return response()->json(['status' => 'success']);
+    }
+    public function get_user_dttable()
+    {
+        return datatables()->query(
+            DB::table('user')
+                ->join('person as p', 'p.person_id', '=', 'user.person_id')
+                ->select('user.record_state', 'user.email', 'user.user_state', 'user.user_id', 'p.person_name', 'p.person_surname')
+                ->orderBy('user.user_id', 'asc')
+        )->toJson();
+    }
+    public function change_state($id)
+    {
+        $state = request('state');
+
+        $data = User::find($id);
+        $data->user_state = $state;
         $data->update();
         return response()->json(['status' => 'success']);
     }

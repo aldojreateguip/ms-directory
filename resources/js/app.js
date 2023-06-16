@@ -1,3 +1,3 @@
 import "./bootstrap";
 import "../sass/app.scss";
-import "./validator.js";
+import "~select/js/select2.min.js";
